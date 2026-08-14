@@ -1,19 +1,19 @@
 {
-  "date": "2026-08-14",
-  "p_qualify": 0.05712890625,
-  "p_seed1": 0.015625,
+  "date": "2026-08-15",
+  "p_qualify": 0.051221370697021484,
+  "p_seed1": 0.014068603515625,
   "p_seed2": 0.0,
-  "p_seed3": 0.00732421875,
-  "p_seed4": 0.0341796875,
+  "p_seed3": 0.006563663482666016,
+  "p_seed4": 0.03058910369873047,
   "breakdown": {
-    "seed1": 0.015625,
+    "seed1": 0.014068603515625,
     "seed2": 0.0,
-    "qualifier_upper": 0.0146484375,
-    "qualifier_lower": 0.1220703125,
-    "out": 0.84765625
+    "qualifier_upper": 0.013127326965332031,
+    "qualifier_lower": 0.10922908782958984,
+    "out": 0.8635749816894531
   },
   "ig_base_points": 10,
-  "nirvana_cases": 1,
+  "nirvana_cases": 8,
   "ascend_cases": 1,
-  "remaining_games": 0
+  "remaining_games": 5
 }

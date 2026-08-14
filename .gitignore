@@ -3,3 +3,5 @@ __pycache__/
 data/snapshots/
 .DS_Store
 Thumbs.db
+# 待获取 workflow 权限后删除本行并提交 .github
+.github/

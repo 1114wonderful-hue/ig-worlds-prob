@@ -4,54 +4,184 @@
   "as_of": "2026-08-14",
   "target_team": "IG",
   "description": "2026 LPL 第三赛段数据快照。第一/第二赛段名次积分来自萌娘百科 2026 页面；第三赛段战绩为该页面快照（登峰组/涅槃组）。剩余赛程（remaining_schedule）待爬虫+人工校验填充（阶段3）。",
-
   "teams": [
-    { "id": "AL",  "name": "Anyone's Legend" },
-    { "id": "BLG", "name": "Bilibili Gaming" },
-    { "id": "EDG", "name": "EDward Gaming" },
-    { "id": "IG",  "name": "Invictus Gaming" },
-    { "id": "JDG", "name": "JD Gaming" },
-    { "id": "LGD", "name": "LGD Gaming" },
-    { "id": "LNG", "name": "LNG Esports" },
-    { "id": "NIP", "name": "Ninjas in Pyjamas" },
-    { "id": "OMG", "name": "Oh My God" },
-    { "id": "TES", "name": "Top Esports" },
-    { "id": "TT",  "name": "ThunderTalk Gaming" },
-    { "id": "UP",  "name": "Ultra Prime" },
-    { "id": "WE",  "name": "Team WE" },
-    { "id": "WBG", "name": "Weibo Gaming" }
+    {
+      "id": "AL",
+      "name": "Anyone's Legend"
+    },
+    {
+      "id": "BLG",
+      "name": "Bilibili Gaming"
+    },
+    {
+      "id": "EDG",
+      "name": "EDward Gaming"
+    },
+    {
+      "id": "IG",
+      "name": "Invictus Gaming"
+    },
+    {
+      "id": "JDG",
+      "name": "JD Gaming"
+    },
+    {
+      "id": "LGD",
+      "name": "LGD Gaming"
+    },
+    {
+      "id": "LNG",
+      "name": "LNG Esports"
+    },
+    {
+      "id": "NIP",
+      "name": "Ninjas in Pyjamas"
+    },
+    {
+      "id": "OMG",
+      "name": "Oh My God"
+    },
+    {
+      "id": "TES",
+      "name": "Top Esports"
+    },
+    {
+      "id": "TT",
+      "name": "ThunderTalk Gaming"
+    },
+    {
+      "id": "UP",
+      "name": "Ultra Prime"
+    },
+    {
+      "id": "WE",
+      "name": "Team WE"
+    },
+    {
+      "id": "WBG",
+      "name": "Weibo Gaming"
+    }
   ],
-
   "points_earned": {
-    "AL":  { "split1": 20, "split2": 30 },
-    "BLG": { "split1": 80, "split2": 110 },
-    "EDG": { "split1": 0,  "split2": 10 },
-    "IG":  { "split1": 10, "split2": 0 },
-    "JDG": { "split1": 50, "split2": 15 },
-    "LGD": { "split1": 0,  "split2": 15 },
-    "LNG": { "split1": 0,  "split2": 0 },
-    "NIP": { "split1": 5,  "split2": 0 },
-    "OMG": { "split1": 0,  "split2": 0 },
-    "TES": { "split1": 10, "split2": 80 },
-    "TT":  { "split1": 0,  "split2": 10 },
-    "UP":  { "split1": 0,  "split2": 0 },
-    "WE":  { "split1": 5,  "split2": 50 },
-    "WBG": { "split1": 40, "split2": 0 }
+    "AL": {
+      "split1": 20,
+      "split2": 30
+    },
+    "BLG": {
+      "split1": 80,
+      "split2": 110
+    },
+    "EDG": {
+      "split1": 0,
+      "split2": 10
+    },
+    "IG": {
+      "split1": 10,
+      "split2": 0
+    },
+    "JDG": {
+      "split1": 50,
+      "split2": 15
+    },
+    "LGD": {
+      "split1": 0,
+      "split2": 15
+    },
+    "LNG": {
+      "split1": 0,
+      "split2": 0
+    },
+    "NIP": {
+      "split1": 5,
+      "split2": 0
+    },
+    "OMG": {
+      "split1": 0,
+      "split2": 0
+    },
+    "TES": {
+      "split1": 10,
+      "split2": 80
+    },
+    "TT": {
+      "split1": 0,
+      "split2": 10
+    },
+    "UP": {
+      "split1": 0,
+      "split2": 0
+    },
+    "WE": {
+      "split1": 5,
+      "split2": 50
+    },
+    "WBG": {
+      "split1": 40,
+      "split2": 0
+    }
   },
-
   "split3": {
     "ascend": {
-      "teams": ["TES", "BLG", "AL", "WE", "JDG", "TT", "LGD", "EDG"],
+      "teams": [
+        "TES",
+        "BLG",
+        "AL",
+        "WE",
+        "JDG",
+        "TT",
+        "LGD",
+        "EDG"
+      ],
       "format": "double_round_robin_bo3",
       "records": {
-        "TES": { "w": 7, "l": 1, "small_w": 14, "small_l": 4 },
-        "BLG": { "w": 7, "l": 1, "small_w": 14, "small_l": 6 },
-        "AL":  { "w": 6, "l": 2, "small_w": 13, "small_l": 5 },
-        "WE":  { "w": 5, "l": 4, "small_w": 11, "small_l": 10 },
-        "JDG": { "w": 4, "l": 4, "small_w": 10, "small_l": 10 },
-        "TT":  { "w": 3, "l": 6, "small_w": 10, "small_l": 14 },
-        "LGD": { "w": 1, "l": 7, "small_w": 6,  "small_l": 14 },
-        "EDG": { "w": 0, "l": 8, "small_w": 1,  "small_l": 16 }
+        "TES": {
+          "w": 7,
+          "l": 1,
+          "small_w": 14,
+          "small_l": 4
+        },
+        "BLG": {
+          "w": 7,
+          "l": 1,
+          "small_w": 14,
+          "small_l": 6
+        },
+        "AL": {
+          "w": 6,
+          "l": 2,
+          "small_w": 13,
+          "small_l": 5
+        },
+        "WE": {
+          "w": 5,
+          "l": 4,
+          "small_w": 11,
+          "small_l": 10
+        },
+        "JDG": {
+          "w": 4,
+          "l": 4,
+          "small_w": 10,
+          "small_l": 10
+        },
+        "TT": {
+          "w": 3,
+          "l": 6,
+          "small_w": 10,
+          "small_l": 14
+        },
+        "LGD": {
+          "w": 1,
+          "l": 7,
+          "small_w": 6,
+          "small_l": 14
+        },
+        "EDG": {
+          "w": 0,
+          "l": 8,
+          "small_w": 1,
+          "small_l": 16
+        }
       },
       "games_played": 33,
       "games_total": 56,
@@ -59,13 +189,38 @@
       "road_to_playoffs": "rank7_8"
     },
     "nirvana": {
-      "teams": ["NIP", "IG", "WBG", "LNG"],
+      "teams": [
+        "NIP",
+        "IG",
+        "WBG",
+        "LNG"
+      ],
       "format": "double_round_robin_bo3",
       "records": {
-        "NIP": { "w": 3, "l": 0, "small_w": 6, "small_l": 1 },
-        "IG":  { "w": 3, "l": 1, "small_w": 7, "small_l": 3 },
-        "WBG": { "w": 1, "l": 2, "small_w": 3, "small_l": 4 },
-        "LNG": { "w": 0, "l": 4, "small_w": 0, "small_l": 8 }
+        "NIP": {
+          "w": 3,
+          "l": 0,
+          "small_w": 6,
+          "small_l": 1
+        },
+        "IG": {
+          "w": 3,
+          "l": 1,
+          "small_w": 7,
+          "small_l": 3
+        },
+        "WBG": {
+          "w": 1,
+          "l": 2,
+          "small_w": 3,
+          "small_l": 4
+        },
+        "LNG": {
+          "w": 0,
+          "l": 4,
+          "small_w": 0,
+          "small_l": 8
+        }
       },
       "games_played": 7,
       "games_total": 12,
@@ -75,8 +230,16 @@
     "knight_road": {
       "format": "bo5_single_elim",
       "matches": [
-        { "a": "A7", "b": "N2", "note": "登峰组第7 vs 涅槃组第2" },
-        { "a": "A8", "b": "N1", "note": "登峰组第8 vs 涅槃组第1" }
+        {
+          "a": "A7",
+          "b": "N2",
+          "note": "登峰组第7 vs 涅槃组第2"
+        },
+        {
+          "a": "A8",
+          "b": "N1",
+          "note": "登峰组第8 vs 涅槃组第1"
+        }
       ]
     },
     "season_playoffs": {
@@ -85,7 +248,42 @@
       "champion_is_seed1": true
     }
   },
-
-  "remaining_schedule": [],
+  "remaining_schedule": [
+    {
+      "date": "2026-08-16",
+      "a": "IG",
+      "b": "NIP",
+      "group": "nirvana",
+      "format": "bo3"
+    },
+    {
+      "date": "2026-08-17",
+      "a": "IG",
+      "b": "WBG",
+      "group": "nirvana",
+      "format": "bo3"
+    },
+    {
+      "date": "2026-08-18",
+      "a": "NIP",
+      "b": "WBG",
+      "group": "nirvana",
+      "format": "bo3"
+    },
+    {
+      "date": "2026-08-19",
+      "a": "NIP",
+      "b": "LNG",
+      "group": "nirvana",
+      "format": "bo3"
+    },
+    {
+      "date": "2026-08-20",
+      "a": "WBG",
+      "b": "LNG",
+      "group": "nirvana",
+      "format": "bo3"
+    }
+  ],
   "remaining_schedule_note": "⚠️ 待填充：第三赛段剩余 5 场（涅槃组）+ 23 场（登峰组）的具体对阵与日期，由阶段3爬虫+人工校验录入"
 }
