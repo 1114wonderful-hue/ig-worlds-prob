@@ -136,51 +136,51 @@
       "records": {
         "TES": {
           "w": 7,
-          "l": 1,
+          "l": 3,
           "small_w": 14,
-          "small_l": 4
+          "small_l": 8
         },
         "BLG": {
-          "w": 7,
-          "l": 1,
-          "small_w": 14,
-          "small_l": 6
+          "w": 8,
+          "l": 2,
+          "small_w": 17,
+          "small_l": 8
         },
         "AL": {
-          "w": 6,
+          "w": 8,
           "l": 2,
-          "small_w": 13,
-          "small_l": 5
+          "small_w": 17,
+          "small_l": 7
         },
         "WE": {
-          "w": 5,
+          "w": 6,
           "l": 4,
-          "small_w": 11,
+          "small_w": 13,
           "small_l": 10
         },
         "JDG": {
-          "w": 4,
-          "l": 4,
-          "small_w": 10,
-          "small_l": 10
+          "w": 5,
+          "l": 5,
+          "small_w": 13,
+          "small_l": 13
         },
         "TT": {
           "w": 3,
-          "l": 6,
+          "l": 7,
           "small_w": 10,
-          "small_l": 14
+          "small_l": 16
         },
         "LGD": {
-          "w": 1,
+          "w": 3,
           "l": 7,
-          "small_w": 6,
+          "small_w": 10,
           "small_l": 14
         },
         "EDG": {
           "w": 0,
-          "l": 8,
-          "small_w": 1,
-          "small_l": 16
+          "l": 10,
+          "small_w": 2,
+          "small_l": 20
         }
       },
       "games_played": 33,
@@ -198,10 +198,10 @@
       "format": "double_round_robin_bo3",
       "records": {
         "NIP": {
-          "w": 3,
+          "w": 4,
           "l": 0,
-          "small_w": 6,
-          "small_l": 1
+          "small_w": 8,
+          "small_l": 2
         },
         "IG": {
           "w": 3,
@@ -211,9 +211,9 @@
         },
         "WBG": {
           "w": 1,
-          "l": 2,
-          "small_w": 3,
-          "small_l": 4
+          "l": 3,
+          "small_w": 4,
+          "small_l": 6
         },
         "LNG": {
           "w": 0,
@@ -250,24 +250,31 @@
   },
   "remaining_schedule": [
     {
-      "date": "2026-08-18",
-      "a": "NIP",
-      "b": "WBG",
-      "group": "nirvana",
-      "format": "bo3"
-    },
-    {
-      "date": "2026-08-19",
+      "date": "2026-08-15",
       "a": "NIP",
       "b": "LNG",
       "group": "nirvana",
       "format": "bo3"
     },
     {
-      "date": "2026-08-20",
-      "a": "WBG",
-      "b": "LNG",
-      "group": "nirvana",
+      "date": "2026-08-15",
+      "a": "TT",
+      "b": "AL",
+      "group": "ascend",
+      "format": "bo3"
+    },
+    {
+      "date": "2026-08-15",
+      "a": "BLG",
+      "b": "WE",
+      "group": "ascend",
+      "format": "bo3"
+    },
+    {
+      "date": "2026-08-16",
+      "a": "LGD",
+      "b": "JDG",
+      "group": "ascend",
       "format": "bo3"
     },
     {
@@ -278,10 +285,108 @@
       "format": "bo3"
     },
     {
+      "date": "2026-08-16",
+      "a": "TES",
+      "b": "EDG",
+      "group": "ascend",
+      "format": "bo3"
+    },
+    {
+      "date": "2026-08-19",
+      "a": "LNG",
+      "b": "WBG",
+      "group": "nirvana",
+      "format": "bo3"
+    },
+    {
+      "date": "2026-08-19",
+      "a": "AL",
+      "b": "TES",
+      "group": "ascend",
+      "format": "bo3"
+    },
+    {
+      "date": "2026-08-19",
+      "a": "WE",
+      "b": "EDG",
+      "group": "ascend",
+      "format": "bo3"
+    },
+    {
+      "date": "2026-08-20",
+      "a": "TT",
+      "b": "JDG",
+      "group": "ascend",
+      "format": "bo3"
+    },
+    {
+      "date": "2026-08-20",
+      "a": "LGD",
+      "b": "BLG",
+      "group": "ascend",
+      "format": "bo3"
+    },
+    {
+      "date": "2026-08-21",
+      "a": "TT",
+      "b": "EDG",
+      "group": "ascend",
+      "format": "bo3"
+    },
+    {
+      "date": "2026-08-21",
+      "a": "AL",
+      "b": "WE",
+      "group": "ascend",
+      "format": "bo3"
+    },
+    {
+      "date": "2026-08-21",
+      "a": "BLG",
+      "b": "TES",
+      "group": "ascend",
+      "format": "bo3"
+    },
+    {
+      "date": "2026-08-22",
+      "a": "LGD",
+      "b": "WE",
+      "group": "ascend",
+      "format": "bo3"
+    },
+    {
       "date": "2026-08-22",
       "a": "NIP",
       "b": "IG",
       "group": "nirvana",
+      "format": "bo3"
+    },
+    {
+      "date": "2026-08-22",
+      "a": "JDG",
+      "b": "TES",
+      "group": "ascend",
+      "format": "bo3"
+    },
+    {
+      "date": "2026-08-23",
+      "a": "TT",
+      "b": "LGD",
+      "group": "ascend",
+      "format": "bo3"
+    },
+    {
+      "date": "2026-08-23",
+      "a": "JDG",
+      "b": "EDG",
+      "group": "ascend",
+      "format": "bo3"
+    },
+    {
+      "date": "2026-08-23",
+      "a": "AL",
+      "b": "BLG",
+      "group": "ascend",
       "format": "bo3"
     }
   ],
