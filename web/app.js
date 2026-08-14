@@ -76,13 +76,16 @@
   async function loadSchedule() {
     try {
       scheduleData = await (await fetch('data/schedule.json')).json();
-      const s = await (await fetch('data/season-2026.json')).json();
-      s.teams.forEach(t => { TEAM_NAME[t.id] = t.name.replace(/\s*\(.*\)/, ''); });
     } catch (e) {
       document.getElementById('schedule-list').innerHTML =
         '<div class="chart-empty">赛程数据暂不可用（稍后自动更新）</div>';
       return;
     }
+    // 队伍中文名（可选增强，失败不影响赛程显示）
+    try {
+      const s = await (await fetch('data/season-2026.json')).json();
+      s.teams.forEach(t => { TEAM_NAME[t.id] = t.name.replace(/\s*\(.*\)/, ''); });
+    } catch (e) { /* 使用内置映射即可 */ }
     document.getElementById('team-search').addEventListener('input', (ev) => {
       searchText = ev.target.value.trim().toUpperCase();
       renderSchedule();
