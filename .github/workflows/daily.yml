@@ -1,0 +1,57 @@
+name: 每日自动更新
+
+on:
+  schedule:
+    # 每天 22:00 北京时间（14:00 UTC）自动抓取赛果并重算
+    - cron: '0 14 * * *'
+  workflow_dispatch: {}   # 支持手动触发
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  update-and-publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 设置 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 抓取 LPL 官方赛程/赛果并重算
+        run: |
+          python scripts/fetch_schedule.py
+          python scripts/daily_update.py --date $(date +%F)
+
+      - name: 同步发布副本并提交数据
+        run: |
+          cp -r web/* docs/
+          git config user.name "IG概率计算器"
+          git config user.email "ig-prob@example.com"
+          git add -A
+          git diff --cached --quiet || git commit -m "chore: 每日自动更新 $(date +%F)"
+          git push
+
+      - name: 配置 Pages
+        uses: actions/configure-pages@v5
+
+      - name: 上传产物
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/
+
+      - name: 部署到 GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
