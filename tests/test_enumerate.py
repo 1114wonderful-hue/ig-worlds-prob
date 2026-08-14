@@ -30,10 +30,13 @@ check('IG 进世界赛概率 > 0 且 < 0.2', 0 < res0['p_qualify'] < 0.2)
 check('seed2 概率极小（IG 基础积分太低，仅极端分支可能）', 0 <= res0['p_seed2'] < 0.001)
 
 print('== 2. 涅槃剩余 1 场（IG vs WBG）：IG 输赢都不影响进前 2 → 概率不变 ==')
+base0 = copy.deepcopy(SEASON)
+base0['remaining_schedule'] = []
+res_base = compute_ig_probability(base0, RULES)
 s2 = copy.deepcopy(SEASON)
 s2['remaining_schedule'] = [{'a': 'IG', 'b': 'WBG', 'group': 'nirvana', 'format': 'bo3'}]
 res2 = compute_ig_probability(s2, RULES)
-check('概率与空赛程一致', abs(res2['p_qualify'] - res0['p_qualify']) < 1e-9)
+check('概率与空基准一致', abs(res2['p_qualify'] - res_base['p_qualify']) < 1e-9)
 
 print('== 3. 涅槃剩余 3 场（IG 可能被 WBG 反超掉出前 2）→ 概率下降 ==')
 s3 = copy.deepcopy(SEASON)
@@ -43,8 +46,8 @@ s3['remaining_schedule'] = [
     {'a': 'WBG', 'b': 'LNG', 'group': 'nirvana', 'format': 'bo3'},
 ]
 res3 = compute_ig_probability(s3, RULES)
-check('概率下降', res3['p_qualify'] < res0['p_qualify'] - 1e-9)
-check('出局权重上升', res3['breakdown']['out'] > bd['out'] - 1e-12)
+check('概率下降', res3['p_qualify'] < res_base['p_qualify'] - 1e-9)
+check('出局权重上升', res3['breakdown']['out'] > res_base['breakdown']['out'] - 1e-12)
 
 print('== 4. 登峰组剩余 2 场（TES vs EDG、BLG vs EDG）：EDG 可能翻盘，IG 概率变化微小但守恒 ==')
 s4 = copy.deepcopy(SEASON)
