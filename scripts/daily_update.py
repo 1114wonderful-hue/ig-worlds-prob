@@ -125,6 +125,20 @@ def main():
             shutil.copy(src, os.path.join(ROOT, 'web', 'data', name))
     print('已同步到 web/data/（供页面读取）')
 
+    # 给页面资源注入版本号（绕过浏览器缓存：每次更新后强制拉取新版 app.js/style.css）
+    import time as _time, re as _re
+    ts = _time.strftime('%Y%m%d%H%M')
+    for p in (os.path.join(ROOT, 'web', 'index.html'),
+              os.path.join(ROOT, 'docs', 'index.html')):
+        if not os.path.exists(p):
+            continue
+        with open(p, encoding='utf-8') as f:
+            html = f.read()
+        html = _re.sub(r'(app\.js|style\.css)(\?v=\d+)?', r'\1?v=' + ts, html)
+        with open(p, 'w', encoding='utf-8') as f:
+            f.write(html)
+    print(f'已注入资源版本号 v={ts}（绕过浏览器缓存）')
+
 
 if __name__ == '__main__':
     main()
