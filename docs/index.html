@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IG 进世界赛概率 · LPL 2026 纯穷举计算</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="kicker">LPL 2026 · 纯穷举模型 · 每日更新</div>
+      <h1>IG <span class="accent">进世界赛</span>概率</h1>
+      <div class="subtitle">基于官方规则穷举所有队伍剩余比赛的每一种比分结果 · 不考虑纸面实力</div>
+    </div>
+    <div class="hero-right">
+      <div class="big-number" id="big-number">--</div>
+      <div class="big-label">进世界赛概率（数据截至 <span id="data-date">--</span>）</div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="cards" id="seed-cards">
+    <div class="card"><div class="card-title">1 号种子</div><div class="card-num" id="s1">--</div><div class="card-desc">第三赛段冠军直通</div></div>
+    <div class="card"><div class="card-title">2 号种子</div><div class="card-num" id="s2">--</div><div class="card-desc">全年积分第一（除冠军）</div></div>
+    <div class="card"><div class="card-title">3 号种子</div><div class="card-num" id="s3">--</div><div class="card-desc">冒泡赛胜者组冠军</div></div>
+    <div class="card"><div class="card-title">4 号种子</div><div class="card-num" id="s4">--</div><div class="card-desc">冒泡赛败者组胜者</div></div>
+  </section>
+
+  <section class="panel">
+    <h2>晋级路径分解</h2>
+    <div class="bars">
+      <div class="bar-row"><span class="bar-label">1 号种子</span><div class="bar-track"><div class="bar-fill seed1" id="bar-s1"></div></div><span class="bar-pct" id="pct-s1">--</span></div>
+      <div class="bar-row"><span class="bar-label">2 号种子</span><div class="bar-track"><div class="bar-fill seed2" id="bar-s2"></div></div><span class="bar-pct" id="pct-s2">--</span></div>
+      <div class="bar-row"><span class="bar-label">3 号种子</span><div class="bar-track"><div class="bar-fill seed3" id="bar-s3"></div></div><span class="bar-pct" id="pct-s3">--</span></div>
+      <div class="bar-row"><span class="bar-label">4 号种子</span><div class="bar-track"><div class="bar-fill seed4" id="bar-s4"></div></div><span class="bar-pct" id="pct-s4">--</span></div>
+      <div class="bar-row"><span class="bar-label">出局</span><div class="bar-track"><div class="bar-fill out" id="bar-out"></div></div><span class="bar-pct" id="pct-out">--</span></div>
+    </div>
+    <div class="meta" id="meta-line">--</div>
+  </section>
+
+  <section class="panel">
+    <h2>概率历史趋势</h2>
+    <div id="trend-chart" class="chart"></div>
+    <div class="chart-empty" id="trend-empty" style="display:none">暂无历史数据——每天运行 <code>daily_update.py</code> 后自动积累趋势。</div>
+  </section>
+
+  <section class="panel model-note">
+    <h2>这个数字怎么来的？</h2>
+    <ul>
+      <li><strong>纯穷举</strong>：BO3 的 2:0 / 2:1 / 1:2 / 0:2 四种比分等概率（各 1/4），BO5 六种比分等概率。</li>
+      <li><strong>所有队伍</strong>：不仅穷举 IG 自己的比赛，还穷举登峰组 / 涅槃组每一支队伍的剩余比赛（其他队胜负直接影响全年积分排名和冒泡赛资格）。</li>
+      <li><strong>官方规则</strong>：全年积分 = 三赛段积分之和；1 号种子 = 夏季总冠军，2 号 = 积分第一（除冠军），3/4 号 = 冒泡赛。LPL 2026 共 4 个名额。</li>
+      <li><strong>零实力判断</strong>：每场比赛双方胜率 50%，不掺入任何强弱判断。</li>
+    </ul>
+    <a class="btn" href="rules.html">查看完整规则与模型说明 →</a>
+  </section>
+</main>
+
+<footer>LPL 2026 世界赛资格纯穷举计算器 · 数据来源：官方规则 / 手动录入（萌娘百科参考核对） · 非官方项目</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
