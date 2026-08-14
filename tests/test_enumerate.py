@@ -25,7 +25,7 @@ res0 = compute_ig_probability(SEASON, RULES)
 bd = res0['breakdown']
 tot = res0['p_seed1'] + res0['p_seed2'] + bd['qualifier_upper'] + bd['qualifier_lower'] + bd['out']
 check('breakdown 权重守恒 = 1', abs(tot - 1.0) < 1e-9)
-check('p_qualify = seed1+3+4', abs(res0['p_qualify'] - (res0['p_seed1'] + res0['p_seed3'] + res0['p_seed4'])) < 1e-12)
+check('p_qualify = seed1+2+3+4', abs(res0['p_qualify'] - (res0['p_seed1'] + res0['p_seed2'] + res0['p_seed3'] + res0['p_seed4'])) < 1e-12)
 check('IG 进世界赛概率 > 0 且 < 0.2', 0 < res0['p_qualify'] < 0.2)
 check('seed2 = 0（IG 基础积分太低）', abs(res0['p_seed2']) < 1e-12)
 
