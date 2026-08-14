@@ -7,7 +7,6 @@
       fetch('data/current.json').then(r => r.json()).catch(() => null),
       fetch('data/trend.json').then(r => r.json()).catch(() => null),
     ]);
-
     if (!cur) {
       document.getElementById('big-number').textContent = '--';
       document.getElementById('data-date').textContent = '未生成';
@@ -63,4 +62,86 @@
   }
 
   load();
+
+  // ============ 赛程模块 ============
+  const TEAM_NAME = {
+    AL: 'AL', BLG: 'BLG', EDG: 'EDG', IG: 'IG', JDG: 'JDG', LGD: 'LGD',
+    LNG: 'LNG', NIP: 'NIP', OMG: 'OMG', TES: 'TES', TT: 'TT', UP: 'UP',
+    WE: 'WE', WBG: 'WBG',
+  };
+  let scheduleData = null;
+  let filterTeam = 'IG';
+  let searchText = '';
+
+  async function loadSchedule() {
+    try {
+      scheduleData = await (await fetch('data/schedule.json')).json();
+      const s = await (await fetch('data/season-2026.json')).json();
+      s.teams.forEach(t => { TEAM_NAME[t.id] = t.name.replace(/\s*\(.*\)/, ''); });
+    } catch (e) {
+      document.getElementById('schedule-list').innerHTML =
+        '<div class="chart-empty">赛程数据暂不可用（稍后自动更新）</div>';
+      return;
+    }
+    document.getElementById('team-search').addEventListener('input', (ev) => {
+      searchText = ev.target.value.trim().toUpperCase();
+      renderSchedule();
+    });
+    document.querySelectorAll('.tag[data-team]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tag[data-team]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        filterTeam = btn.dataset.team;
+        document.getElementById('team-search').value = '';
+        searchText = '';
+        renderSchedule();
+      });
+    });
+    renderSchedule();
+  }
+
+  function teamHits(team, needle) {
+    const up = needle.toUpperCase();
+    return team.toUpperCase() === up
+      || (TEAM_NAME[team] || team).toUpperCase().includes(up)
+      || TEAM_NAME[team] === needle;
+  }
+
+  function renderSchedule() {
+    if (!scheduleData) return;
+    const list = document.getElementById('schedule-list');
+    const needle = searchText || filterTeam;
+    let ms = scheduleData.matches.filter(m =>
+      teamHits(m.a, needle) || teamHits(m.b, needle));
+    // 排序：最近的未来在最前，已结束按日期倒序（最近的在前）
+    const now = new Date().toISOString().slice(0, 16);
+    ms = ms.sort((x, y) => (x.date < y.date ? 1 : x.date > y.date ? -1 : 0));
+    const future = ms.filter(m => m.status === 'upcoming');
+    const past = ms.filter(m => m.status === 'done');
+    const ordered = future.concat(past);
+    document.getElementById('schedule-count').textContent =
+      `${ordered.length} 场（未来 ${future.length} · 已结束 ${past.length}）`;
+
+    if (!ordered.length) {
+      list.innerHTML = '<div class="chart-empty">该队伍暂无赛程</div>';
+      return;
+    }
+    list.innerHTML = ordered.map(m => {
+      const isFuture = m.status === 'upcoming';
+      const d = m.date.replace('T', ' ');
+      const scoreA = m.score_a != null ? m.score_a : '';
+      const scoreB = m.score_b != null ? m.score_b : '';
+      const winA = m.score_a != null && m.score_a > m.score_b;
+      const winB = m.score_a != null && m.score_b > m.score_a;
+      const igMark = (t) => (t === 'IG' ? '<span class="ig-dot">IG</span>' : t);
+      return `<div class="match-card ${isFuture ? 'future' : 'done'}">
+        <div class="m-date">${d.slice(5)}</div>
+        <div class="m-team ${winA ? 'win' : ''}">${igMark(m.a)}</div>
+        <div class="m-score">${isFuture ? 'VS' : `${scoreA} : ${scoreB}`}</div>
+        <div class="m-team ${winB ? 'win' : ''}">${igMark(m.b)}</div>
+      </div>`;
+    }).join('');
+  }
+
+  loadSchedule();
 })();

@@ -102,6 +102,35 @@ def main():
             r = season['split3'][grp]['records'][t]
             print(f"    {t:4s} {r['w']}-{r['l']}  小分 {r['small_w']}-{r['small_l']}")
 
+    # 3) 输出赛程 JSON（前端"赛程"模块用：第三赛段全部比赛）
+    def group_of(a, b):
+        return 'ascend' if (a in asc_teams and b in asc_teams) else 'nirvana'
+
+    matches_out = []
+    for m in third:
+        status = 'done' if m['MatchStatus'] == '3' else ('upcoming' if m['MatchStatus'] == '1' else m['MatchStatus'])
+        if status == 'done':
+            score_a = int(m['ScoreA']) if m.get('ScoreA') else None
+            score_b = int(m['ScoreB']) if m.get('ScoreB') else None
+        else:
+            score_a = score_b = None
+        matches_out.append({
+            'date': m['MatchDate'][:16].replace(' ', 'T'),
+            'a': m['TeamShortNameA'], 'b': m['TeamShortNameB'],
+            'score_a': score_a, 'score_b': score_b,
+            'status': status,
+            'group': group_of(m['TeamShortNameA'], m['TeamShortNameB']),
+            'name': f"{m['TeamShortNameA']} vs {m['TeamShortNameB']}",
+        })
+    matches_out.sort(key=lambda x: x['date'])
+    schedule = {'as_of': season['as_of'], 'count': len(matches_out), 'matches': matches_out}
+    for p in (os.path.join(ROOT, 'data', 'schedule.json'),
+              os.path.join(ROOT, 'web', 'data', 'schedule.json')):
+        os.makedirs(os.path.dirname(p), exist_ok=True)
+        with open(p, 'w', encoding='utf-8') as f:
+            json.dump(schedule, f, ensure_ascii=False, indent=2)
+    print(f'✅ 赛程已输出: data/schedule.json + web/data/schedule.json（{len(matches_out)} 场）')
+
 
 if __name__ == '__main__':
     main()

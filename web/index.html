@@ -47,6 +47,16 @@
     <div class="chart-empty" id="trend-empty" style="display:none">暂无历史数据——每天运行 <code>daily_update.py</code> 后自动积累趋势。</div>
   </section>
 
+  <section class="panel">
+    <h2>赛程 <span class="muted small">第三赛段 · 左右滑动查看 · 可搜索任意队伍</span></h2>
+    <div class="schedule-bar">
+      <input type="text" id="team-search" placeholder="搜索队伍，如 IG / TES / BLG…" autocomplete="off">
+      <button class="tag active" data-team="IG" title="只看 IG 的比赛">IG</button>
+      <span class="muted small" id="schedule-count"></span>
+    </div>
+    <div class="schedule-scroll" id="schedule-list"></div>
+  </section>
+
   <section class="panel model-note">
     <h2>这个数字怎么来的？</h2>
     <ul>

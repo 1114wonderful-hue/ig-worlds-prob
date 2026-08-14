@@ -1,0 +1,686 @@
+{
+  "as_of": "2026-08-14",
+  "count": 68,
+  "matches": [
+    {
+      "date": "2026-07-22T17:00",
+      "a": "LGD",
+      "b": "EDG",
+      "score_a": 2,
+      "score_b": 0,
+      "status": "done",
+      "group": "ascend",
+      "name": "LGD vs EDG"
+    },
+    {
+      "date": "2026-07-22T19:00",
+      "a": "TES",
+      "b": "WE",
+      "score_a": 2,
+      "score_b": 0,
+      "status": "done",
+      "group": "ascend",
+      "name": "TES vs WE"
+    },
+    {
+      "date": "2026-07-23T17:00",
+      "a": "JDG",
+      "b": "AL",
+      "score_a": 1,
+      "score_b": 2,
+      "status": "done",
+      "group": "ascend",
+      "name": "JDG vs AL"
+    },
+    {
+      "date": "2026-07-23T19:00",
+      "a": "BLG",
+      "b": "TT",
+      "score_a": 2,
+      "score_b": 1,
+      "status": "done",
+      "group": "ascend",
+      "name": "BLG vs TT"
+    },
+    {
+      "date": "2026-07-24T15:00",
+      "a": "AL",
+      "b": "LGD",
+      "score_a": 2,
+      "score_b": 0,
+      "status": "done",
+      "group": "ascend",
+      "name": "AL vs LGD"
+    },
+    {
+      "date": "2026-07-24T17:00",
+      "a": "WE",
+      "b": "JDG",
+      "score_a": 2,
+      "score_b": 1,
+      "status": "done",
+      "group": "ascend",
+      "name": "WE vs JDG"
+    },
+    {
+      "date": "2026-07-24T19:00",
+      "a": "EDG",
+      "b": "BLG",
+      "score_a": 1,
+      "score_b": 2,
+      "status": "done",
+      "group": "ascend",
+      "name": "EDG vs BLG"
+    },
+    {
+      "date": "2026-07-25T15:00",
+      "a": "LGD",
+      "b": "WE",
+      "score_a": 0,
+      "score_b": 2,
+      "status": "done",
+      "group": "ascend",
+      "name": "LGD vs WE"
+    },
+    {
+      "date": "2026-07-25T17:00",
+      "a": "IG",
+      "b": "WBG",
+      "score_a": 2,
+      "score_b": 1,
+      "status": "done",
+      "group": "nirvana",
+      "name": "IG vs WBG"
+    },
+    {
+      "date": "2026-07-25T19:00",
+      "a": "TES",
+      "b": "TT",
+      "score_a": 2,
+      "score_b": 1,
+      "status": "done",
+      "group": "ascend",
+      "name": "TES vs TT"
+    },
+    {
+      "date": "2026-07-26T15:00",
+      "a": "LNG",
+      "b": "NIP",
+      "score_a": 0,
+      "score_b": 2,
+      "status": "done",
+      "group": "nirvana",
+      "name": "LNG vs NIP"
+    },
+    {
+      "date": "2026-07-26T17:00",
+      "a": "TT",
+      "b": "EDG",
+      "score_a": 2,
+      "score_b": 0,
+      "status": "done",
+      "group": "ascend",
+      "name": "TT vs EDG"
+    },
+    {
+      "date": "2026-07-26T19:00",
+      "a": "AL",
+      "b": "BLG",
+      "score_a": 1,
+      "score_b": 2,
+      "status": "done",
+      "group": "ascend",
+      "name": "AL vs BLG"
+    },
+    {
+      "date": "2026-07-29T17:00",
+      "a": "TES",
+      "b": "AL",
+      "score_a": 0,
+      "score_b": 2,
+      "status": "done",
+      "group": "ascend",
+      "name": "TES vs AL"
+    },
+    {
+      "date": "2026-07-29T19:00",
+      "a": "BLG",
+      "b": "LGD",
+      "score_a": 2,
+      "score_b": 1,
+      "status": "done",
+      "group": "ascend",
+      "name": "BLG vs LGD"
+    },
+    {
+      "date": "2026-07-30T15:00",
+      "a": "NIP",
+      "b": "WBG",
+      "score_a": 2,
+      "score_b": 0,
+      "status": "done",
+      "group": "nirvana",
+      "name": "NIP vs WBG"
+    },
+    {
+      "date": "2026-07-30T17:00",
+      "a": "EDG",
+      "b": "WE",
+      "score_a": 0,
+      "score_b": 2,
+      "status": "done",
+      "group": "ascend",
+      "name": "EDG vs WE"
+    },
+    {
+      "date": "2026-07-30T19:00",
+      "a": "TT",
+      "b": "JDG",
+      "score_a": 1,
+      "score_b": 2,
+      "status": "done",
+      "group": "ascend",
+      "name": "TT vs JDG"
+    },
+    {
+      "date": "2026-07-31T15:00",
+      "a": "AL",
+      "b": "EDG",
+      "score_a": 2,
+      "score_b": 0,
+      "status": "done",
+      "group": "ascend",
+      "name": "AL vs EDG"
+    },
+    {
+      "date": "2026-07-31T17:00",
+      "a": "WE",
+      "b": "BLG",
+      "score_a": 0,
+      "score_b": 2,
+      "status": "done",
+      "group": "ascend",
+      "name": "WE vs BLG"
+    },
+    {
+      "date": "2026-08-01T15:00",
+      "a": "AL",
+      "b": "TT",
+      "score_a": 2,
+      "score_b": 0,
+      "status": "done",
+      "group": "ascend",
+      "name": "AL vs TT"
+    },
+    {
+      "date": "2026-08-01T17:00",
+      "a": "LGD",
+      "b": "TES",
+      "score_a": 1,
+      "score_b": 2,
+      "status": "done",
+      "group": "ascend",
+      "name": "LGD vs TES"
+    },
+    {
+      "date": "2026-08-01T19:00",
+      "a": "JDG",
+      "b": "BLG",
+      "score_a": 0,
+      "score_b": 2,
+      "status": "done",
+      "group": "ascend",
+      "name": "JDG vs BLG"
+    },
+    {
+      "date": "2026-08-02T15:00",
+      "a": "TT",
+      "b": "WE",
+      "score_a": 1,
+      "score_b": 2,
+      "status": "done",
+      "group": "ascend",
+      "name": "TT vs WE"
+    },
+    {
+      "date": "2026-08-02T17:00",
+      "a": "LNG",
+      "b": "IG",
+      "score_a": 0,
+      "score_b": 2,
+      "status": "done",
+      "group": "nirvana",
+      "name": "LNG vs IG"
+    },
+    {
+      "date": "2026-08-02T19:00",
+      "a": "TES",
+      "b": "JDG",
+      "score_a": 2,
+      "score_b": 0,
+      "status": "done",
+      "group": "ascend",
+      "name": "TES vs JDG"
+    },
+    {
+      "date": "2026-08-05T17:00",
+      "a": "JDG",
+      "b": "LGD",
+      "score_a": 2,
+      "score_b": 1,
+      "status": "done",
+      "group": "ascend",
+      "name": "JDG vs LGD"
+    },
+    {
+      "date": "2026-08-05T19:00",
+      "a": "EDG",
+      "b": "TES",
+      "score_a": 0,
+      "score_b": 2,
+      "status": "done",
+      "group": "ascend",
+      "name": "EDG vs TES"
+    },
+    {
+      "date": "2026-08-06T15:00",
+      "a": "LGD",
+      "b": "TT",
+      "score_a": 1,
+      "score_b": 2,
+      "status": "done",
+      "group": "ascend",
+      "name": "LGD vs TT"
+    },
+    {
+      "date": "2026-08-06T17:00",
+      "a": "IG",
+      "b": "NIP",
+      "score_a": 1,
+      "score_b": 2,
+      "status": "done",
+      "group": "nirvana",
+      "name": "IG vs NIP"
+    },
+    {
+      "date": "2026-08-06T19:00",
+      "a": "WE",
+      "b": "AL",
+      "score_a": 2,
+      "score_b": 0,
+      "status": "done",
+      "group": "ascend",
+      "name": "WE vs AL"
+    },
+    {
+      "date": "2026-08-07T15:00",
+      "a": "JDG",
+      "b": "EDG",
+      "score_a": 2,
+      "score_b": 0,
+      "status": "done",
+      "group": "ascend",
+      "name": "JDG vs EDG"
+    },
+    {
+      "date": "2026-08-07T17:00",
+      "a": "WE",
+      "b": "TT",
+      "score_a": 1,
+      "score_b": 2,
+      "status": "done",
+      "group": "ascend",
+      "name": "WE vs TT"
+    },
+    {
+      "date": "2026-08-07T19:00",
+      "a": "BLG",
+      "b": "TES",
+      "score_a": 0,
+      "score_b": 2,
+      "status": "done",
+      "group": "ascend",
+      "name": "BLG vs TES"
+    },
+    {
+      "date": "2026-08-08T15:00",
+      "a": "WBG",
+      "b": "LNG",
+      "score_a": 2,
+      "score_b": 0,
+      "status": "done",
+      "group": "nirvana",
+      "name": "WBG vs LNG"
+    },
+    {
+      "date": "2026-08-08T17:00",
+      "a": "LGD",
+      "b": "AL",
+      "score_a": 0,
+      "score_b": 2,
+      "status": "done",
+      "group": "ascend",
+      "name": "LGD vs AL"
+    },
+    {
+      "date": "2026-08-08T19:00",
+      "a": "BLG",
+      "b": "EDG",
+      "score_a": 2,
+      "score_b": 0,
+      "status": "done",
+      "group": "ascend",
+      "name": "BLG vs EDG"
+    },
+    {
+      "date": "2026-08-09T15:00",
+      "a": "IG",
+      "b": "LNG",
+      "score_a": 2,
+      "score_b": 0,
+      "status": "done",
+      "group": "nirvana",
+      "name": "IG vs LNG"
+    },
+    {
+      "date": "2026-08-09T17:00",
+      "a": "TT",
+      "b": "TES",
+      "score_a": 0,
+      "score_b": 2,
+      "status": "done",
+      "group": "ascend",
+      "name": "TT vs TES"
+    },
+    {
+      "date": "2026-08-09T19:00",
+      "a": "JDG",
+      "b": "WE",
+      "score_a": 2,
+      "score_b": 0,
+      "status": "done",
+      "group": "ascend",
+      "name": "JDG vs WE"
+    },
+    {
+      "date": "2026-08-12T17:00",
+      "a": "EDG",
+      "b": "AL",
+      "score_a": 1,
+      "score_b": 2,
+      "status": "done",
+      "group": "ascend",
+      "name": "EDG vs AL"
+    },
+    {
+      "date": "2026-08-12T19:00",
+      "a": "BLG",
+      "b": "JDG",
+      "score_a": 1,
+      "score_b": 2,
+      "status": "done",
+      "group": "ascend",
+      "name": "BLG vs JDG"
+    },
+    {
+      "date": "2026-08-13T15:00",
+      "a": "WBG",
+      "b": "NIP",
+      "score_a": 1,
+      "score_b": 2,
+      "status": "done",
+      "group": "nirvana",
+      "name": "WBG vs NIP"
+    },
+    {
+      "date": "2026-08-13T17:00",
+      "a": "TES",
+      "b": "LGD",
+      "score_a": 0,
+      "score_b": 2,
+      "status": "done",
+      "group": "ascend",
+      "name": "TES vs LGD"
+    },
+    {
+      "date": "2026-08-13T19:00",
+      "a": "TT",
+      "b": "BLG",
+      "score_a": 0,
+      "score_b": 2,
+      "status": "done",
+      "group": "ascend",
+      "name": "TT vs BLG"
+    },
+    {
+      "date": "2026-08-14T15:00",
+      "a": "EDG",
+      "b": "LGD",
+      "score_a": 0,
+      "score_b": 2,
+      "status": "done",
+      "group": "ascend",
+      "name": "EDG vs LGD"
+    },
+    {
+      "date": "2026-08-14T17:00",
+      "a": "WE",
+      "b": "TES",
+      "score_a": 2,
+      "score_b": 0,
+      "status": "done",
+      "group": "ascend",
+      "name": "WE vs TES"
+    },
+    {
+      "date": "2026-08-14T19:00",
+      "a": "AL",
+      "b": "JDG",
+      "score_a": 2,
+      "score_b": 1,
+      "status": "done",
+      "group": "ascend",
+      "name": "AL vs JDG"
+    },
+    {
+      "date": "2026-08-15T15:00",
+      "a": "NIP",
+      "b": "LNG",
+      "score_a": 0,
+      "score_b": 0,
+      "status": "upcoming",
+      "group": "nirvana",
+      "name": "NIP vs LNG"
+    },
+    {
+      "date": "2026-08-15T17:00",
+      "a": "TT",
+      "b": "AL",
+      "score_a": 0,
+      "score_b": 0,
+      "status": "upcoming",
+      "group": "ascend",
+      "name": "TT vs AL"
+    },
+    {
+      "date": "2026-08-15T19:00",
+      "a": "BLG",
+      "b": "WE",
+      "score_a": 0,
+      "score_b": 0,
+      "status": "upcoming",
+      "group": "ascend",
+      "name": "BLG vs WE"
+    },
+    {
+      "date": "2026-08-16T15:00",
+      "a": "LGD",
+      "b": "JDG",
+      "score_a": 0,
+      "score_b": 0,
+      "status": "upcoming",
+      "group": "ascend",
+      "name": "LGD vs JDG"
+    },
+    {
+      "date": "2026-08-16T17:00",
+      "a": "WBG",
+      "b": "IG",
+      "score_a": 0,
+      "score_b": 0,
+      "status": "upcoming",
+      "group": "nirvana",
+      "name": "WBG vs IG"
+    },
+    {
+      "date": "2026-08-16T19:00",
+      "a": "TES",
+      "b": "EDG",
+      "score_a": 0,
+      "score_b": 0,
+      "status": "upcoming",
+      "group": "ascend",
+      "name": "TES vs EDG"
+    },
+    {
+      "date": "2026-08-19T15:00",
+      "a": "LNG",
+      "b": "WBG",
+      "score_a": 0,
+      "score_b": 0,
+      "status": "upcoming",
+      "group": "nirvana",
+      "name": "LNG vs WBG"
+    },
+    {
+      "date": "2026-08-19T17:00",
+      "a": "AL",
+      "b": "TES",
+      "score_a": 0,
+      "score_b": 0,
+      "status": "upcoming",
+      "group": "ascend",
+      "name": "AL vs TES"
+    },
+    {
+      "date": "2026-08-19T19:00",
+      "a": "WE",
+      "b": "EDG",
+      "score_a": 0,
+      "score_b": 0,
+      "status": "upcoming",
+      "group": "ascend",
+      "name": "WE vs EDG"
+    },
+    {
+      "date": "2026-08-20T17:00",
+      "a": "TT",
+      "b": "JDG",
+      "score_a": 0,
+      "score_b": 0,
+      "status": "upcoming",
+      "group": "ascend",
+      "name": "TT vs JDG"
+    },
+    {
+      "date": "2026-08-20T19:00",
+      "a": "LGD",
+      "b": "BLG",
+      "score_a": 0,
+      "score_b": 0,
+      "status": "upcoming",
+      "group": "ascend",
+      "name": "LGD vs BLG"
+    },
+    {
+      "date": "2026-08-21T15:00",
+      "a": "TT",
+      "b": "EDG",
+      "score_a": 0,
+      "score_b": 0,
+      "status": "upcoming",
+      "group": "ascend",
+      "name": "TT vs EDG"
+    },
+    {
+      "date": "2026-08-21T17:00",
+      "a": "AL",
+      "b": "WE",
+      "score_a": 0,
+      "score_b": 0,
+      "status": "upcoming",
+      "group": "ascend",
+      "name": "AL vs WE"
+    },
+    {
+      "date": "2026-08-21T19:00",
+      "a": "BLG",
+      "b": "TES",
+      "score_a": 0,
+      "score_b": 0,
+      "status": "upcoming",
+      "group": "ascend",
+      "name": "BLG vs TES"
+    },
+    {
+      "date": "2026-08-22T15:00",
+      "a": "LGD",
+      "b": "WE",
+      "score_a": 0,
+      "score_b": 0,
+      "status": "upcoming",
+      "group": "ascend",
+      "name": "LGD vs WE"
+    },
+    {
+      "date": "2026-08-22T17:00",
+      "a": "NIP",
+      "b": "IG",
+      "score_a": 0,
+      "score_b": 0,
+      "status": "upcoming",
+      "group": "nirvana",
+      "name": "NIP vs IG"
+    },
+    {
+      "date": "2026-08-22T19:00",
+      "a": "JDG",
+      "b": "TES",
+      "score_a": 0,
+      "score_b": 0,
+      "status": "upcoming",
+      "group": "ascend",
+      "name": "JDG vs TES"
+    },
+    {
+      "date": "2026-08-23T15:00",
+      "a": "TT",
+      "b": "LGD",
+      "score_a": 0,
+      "score_b": 0,
+      "status": "upcoming",
+      "group": "ascend",
+      "name": "TT vs LGD"
+    },
+    {
+      "date": "2026-08-23T17:00",
+      "a": "JDG",
+      "b": "EDG",
+      "score_a": 0,
+      "score_b": 0,
+      "status": "upcoming",
+      "group": "ascend",
+      "name": "JDG vs EDG"
+    },
+    {
+      "date": "2026-08-23T19:00",
+      "a": "AL",
+      "b": "BLG",
+      "score_a": 0,
+      "score_b": 0,
+      "status": "upcoming",
+      "group": "ascend",
+      "name": "AL vs BLG"
+    }
+  ]
+}
