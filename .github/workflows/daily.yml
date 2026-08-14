@@ -1,0 +1,52 @@
+name: 每日重算并发布静态站
+
+on:
+  schedule:
+    # 每天 22:00 北京时间（14:00 UTC）自动重算
+    - cron: '0 14 * * *'
+  workflow_dispatch: {}   # 支持手动触发
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  compute-and-publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 设置 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 重算 IG 进世界赛概率
+        run: |
+          python scripts/daily_update.py --date $(date +%F) --no-snapshot
+
+      - name: 校验产物
+        run: |
+          test -f web/data/current.json && echo "current.json OK"
+          python -c "import json; d=json.load(open('web/data/current.json')); assert 0<=d['p_qualify']<=1; print('p_qualify =', round(d['p_qualify']*100,3), '%')"
+
+      - name: 配置 Pages
+        uses: actions/configure-pages@v5
+
+      - name: 上传产物（web/ 目录）
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: web/
+
+      - name: 部署到 GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

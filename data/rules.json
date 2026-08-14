@@ -1,0 +1,80 @@
+{
+  "year": 2026,
+  "description": "LPL 2026 世界赛资格计算规则配置。字段含义与来源见 docs/rules-2026.md。⚠️ 标注的项为待官方确认。",
+
+  "worlds_slots": {
+    "base_slots_per_region": 3,
+    "msi_champion_direct_qualify": true,
+    "msi_second_best_region_extra_slot": true,
+    "lpl_msi2026_result": "runner_up",
+    "lpl_total_slots": 4,
+    "note": "LPL 基础 3 + MSI2026 成绩第二好赛区加成 1 = 4 个名额（BLG 获 MSI 亚军，LPL 为第二好赛区）"
+  },
+
+  "points": {
+    "split1": {
+      "table": { "1": 80, "2": 50, "3": 40, "4": 20, "5-6": 10, "7-8": 5, "9-14": 0 },
+      "note": "✅ 已核实（萌娘百科 2026 页面）"
+    },
+    "split2": {
+      "table": { "1": 110, "2": 80, "3": 50, "4": 30, "5-6": 15, "7-8": 10, "9-12": 0, "13-14": 0 },
+      "note": "✅ 已核实（萌娘百科 2026 页面）"
+    },
+    "split3": {
+      "table": { "1": 220, "2": 110, "3": 80, "4": 60, "5-6": 40, "7-8": 10, "9-12": 0 },
+      "note": "⚠️ 暂按 2025 档位（2025 官方规则），2026 官方档位公布后改此表"
+    },
+    "total_ranking": {
+      "primary": "total_points_desc",
+      "tiebreak": "split3_points_desc",
+      "note": "✅ 2025 官方规则：积分相同则第三赛段积分高者优先"
+    }
+  },
+
+  "seeds": {
+    "seed1": "split3_champion",
+    "seed2": "highest_total_points_excluding_champion",
+    "seed3": "qualifier_upper_bracket_winner",
+    "seed4": "qualifier_final_winner",
+    "note": "✅ 2025 官方规则"
+  },
+
+  "qualifier": {
+    "participants_ranks": [3, 4, 5, 6],
+    "upper_bracket_ranks": [3, 4],
+    "lower_bracket_ranks": [5, 6],
+    "format": "bo5",
+    "structure": {
+      "round1": "upper_bracket_bo5 + lower_bracket_bo5",
+      "seed3": "upper_bracket_winner",
+      "round2": "upper_bracket_loser vs lower_bracket_winner",
+      "seed4": "round2_winner"
+    },
+    "equal_probability_equivalent": {
+      "upper_bracket_qualify_p": "3/4",
+      "lower_bracket_qualify_p": "1/4"
+    },
+    "note": "✅ 2025 官方规则（萌娘百科资格赛页面）"
+  },
+
+  "prob_model": {
+    "description": "纯穷举/等概率模型：不考虑纸面实力，每种比分等概率",
+    "bo3": { "2-0": 1, "2-1": 1, "1-2": 1, "0-2": 1 },
+    "bo5": { "3-0": 1, "3-1": 1, "3-2": 1, "2-3": 1, "1-3": 1, "0-3": 1 },
+    "note": "BO3 四种比分各 1/4，BO5 六种比分各 1/6；季后赛/冒泡赛用等概率 DP 聚合（与穷举数学等价）"
+  },
+
+  "limits": {
+    "max_exhaustive_games_python": 13,
+    "max_exhaustive_games_compiled": 15,
+    "strategy": "精确化简（只穷举影响 IG 资格的比赛）+ 阈值控制（超过则提示组合数过大）",
+    "note": "4^13 ≈ 6710 万分支，Python 引擎约 5-20 分钟；超过阈值提示暂不可精确计算"
+  },
+
+  "todo_confirm": [
+    "2026 第三赛段积分档位（points.split3 待官方确认）",
+    "2026 冒泡赛结构是否与 2025 完全一致",
+    "并列 tiebreak 是否沿用（第三赛段积分高者优先）",
+    "2026 第三赛段实时赛程/赛果（数据采集阶段填充）"
+  ]
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>规则与模型说明 · IG 进世界赛概率</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="kicker">LPL 2026 · 规则与模型</div>
+      <h1>规则与<span class="accent">模型</span>说明</h1>
+      <div class="subtitle">本页说明「纯穷举」是怎么算的，以及它依赖哪些官方规则</div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="panel">
+    <h2>1. 2026 年 LPL 世界赛名额（4 个）</h2>
+    <ul class="model-note">
+      <li>五大赛区（LPL/LCK/LEC/LCS/LCP）各 <strong>3 个基础名额</strong>。</li>
+      <li>MSI 冠军队伍直通世界赛（不占赛区名额，但必须进入本赛区第三赛段季后赛）。</li>
+      <li>MSI 成绩第二好的赛区额外获得 <strong>1 个 4 号种子名额</strong>。</li>
+      <li>2026 MSI：冠军 HLE（LCK）、亚军 BLG（LPL）→ <strong>LPL 为成绩第二好赛区，共 4 个名额</strong>。</li>
+    </ul>
+  </section>
+
+  <section class="panel">
+    <h2>2. 全年积分（Championship Points）</h2>
+    <p style="color:var(--muted);font-size:14px;margin-bottom:14px">
+      全年积分 = 第一赛段 + 第二赛段 + 第三赛段（赛季季后赛名次）积分。积分高者排名靠前；并列时第三赛段积分高者优先。</p>
+    <table>
+      <tr><th>名次</th><th>第一赛段</th><th>第二赛段</th><th>第三赛段</th></tr>
+      <tr><td>冠军</td><td>80</td><td>110</td><td>220（并直通世界赛）</td></tr>
+      <tr><td>亚军</td><td>50</td><td>80</td><td>110</td></tr>
+      <tr><td>季军</td><td>40</td><td>50</td><td>80</td></tr>
+      <tr><td>殿军</td><td>20</td><td>30</td><td>60</td></tr>
+      <tr><td>5-6</td><td>10</td><td>15</td><td>40</td></tr>
+      <tr><td>7-8</td><td>5</td><td>10</td><td>10</td></tr>
+      <tr><td>其余</td><td>0</td><td>0</td><td>0</td></tr>
+    </table>
+    <p style="color:var(--muted);font-size:12px;margin-top:8px">⚠️ 第三赛段档位暂按 2025 官方规则参数化（2026 官方档位公布后更新，见 <code>data/rules.json</code>）。</p>
+  </section>
+
+  <section class="panel">
+    <h2>3. 种子分配与冒泡赛</h2>
+    <ul class="model-note">
+      <li><strong>1 号种子</strong>：第三赛段冠军（赛季总冠军）直通。</li>
+      <li><strong>2 号种子</strong>：除冠军外全年积分第一。</li>
+      <li><strong>冒泡赛（全球总决赛资格赛）</strong>：全年积分第 3-6 名共 4 队；第 3-4 名进胜者组、第 5-6 名进败者组；全 BO5。胜者组胜者 = 3 号种子；胜者组败者 vs 败者组胜者再战，胜者 = 4 号种子。</li>
+      <li>等概率模型下：胜者组队伍进世界赛概率 = 3/4，败者组 = 1/4。</li>
+    </ul>
+  </section>
+
+  <section class="panel">
+    <h2>4. 纯穷举模型（本网站的核心）</h2>
+    <ul class="model-note">
+      <li><strong>零实力判断</strong>：不评估任何队伍强弱。每场 BO3 的 2:0 / 2:1 / 1:2 / 0:2 四种比分各 1/4；BO5 六种比分各 1/6。</li>
+      <li><strong>全量穷举</strong>：不仅穷举 IG 的比赛，还穷举登峰组、涅槃组所有队伍的剩余比赛——因为其他队伍的胜负会改变全年积分排名、进而改变 IG 的冒泡赛资格。</li>
+      <li><strong>分层计算（数学上精确）</strong>：
+        <br>① 涅槃组剩余比赛：4^N 字面穷举（含小分）；② 登峰组剩余比赛：胜场 DP 聚合排名分布；③ 骑士之路：BO5 等概率；④ 赛季季后赛：8 队双败 4096 个胜负分支穷举；⑤ 每个分支按官方规则判定 IG 资格，加权聚合。
+      </li>
+    </ul>
+  </section>
+
+  <section class="panel">
+    <h2>5. 已知限制与待确认项</h2>
+    <table>
+      <tr><th>项</th><th>状态</th></tr>
+      <tr><td>2026 第三赛段积分档位</td><td>⚠️ 暂按 2025，官方公布后改配置</td></tr>
+      <tr><td>季后赛对阵结构（登峰前 2 轮空 / 骑士之路进败者组）</td><td>⚠️ 按官方描述推断，赛程公布后校准</td></tr>
+      <tr><td>登峰组并列 tiebreak</td><td>⚠️ 用「均匀打破」近似（真实规则为小分，误差限于并列边界）</td></tr>
+      <tr><td>IG 未进季后赛</td><td>按出局处理（当前 IG 基础积分 10 分必然出局）</td></tr>
+      <tr><td>剩余赛程数据</td><td>手动录入（半自动：萌娘百科参考 + 人工校验）</td></tr>
+    </table>
+  </section>
+
+  <p style="text-align:center;margin-top:24px"><a class="btn" href="index.html">← 返回主页</a></p>
+</main>
+
+<footer>LPL 2026 世界赛资格纯穷举计算器 · 非官方项目</footer>
+</body>
+</html>
