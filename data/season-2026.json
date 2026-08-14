@@ -250,20 +250,6 @@
   },
   "remaining_schedule": [
     {
-      "date": "2026-08-16",
-      "a": "IG",
-      "b": "NIP",
-      "group": "nirvana",
-      "format": "bo3"
-    },
-    {
-      "date": "2026-08-17",
-      "a": "IG",
-      "b": "WBG",
-      "group": "nirvana",
-      "format": "bo3"
-    },
-    {
       "date": "2026-08-18",
       "a": "NIP",
       "b": "WBG",
@@ -281,6 +267,20 @@
       "date": "2026-08-20",
       "a": "WBG",
       "b": "LNG",
+      "group": "nirvana",
+      "format": "bo3"
+    },
+    {
+      "date": "2026-08-16",
+      "a": "WBG",
+      "b": "IG",
+      "group": "nirvana",
+      "format": "bo3"
+    },
+    {
+      "date": "2026-08-22",
+      "a": "NIP",
+      "b": "IG",
       "group": "nirvana",
       "format": "bo3"
     }
