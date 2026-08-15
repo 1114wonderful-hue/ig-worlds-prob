@@ -1,7 +1,7 @@
 {
   "year": 2026,
   "season_stage": "split3_group_stage",
-  "as_of": "2026-08-14",
+  "as_of": "2026-08-15",
   "target_team": "IG",
   "description": "2026 LPL 第三赛段数据快照。第一/第二赛段名次积分来自萌娘百科 2026 页面；第三赛段战绩为该页面快照（登峰组/涅槃组）。剩余赛程（remaining_schedule）待爬虫+人工校验填充（阶段3）。",
   "teams": [
@@ -147,10 +147,10 @@
           "small_l": 8
         },
         "AL": {
-          "w": 8,
+          "w": 9,
           "l": 2,
-          "small_w": 17,
-          "small_l": 7
+          "small_w": 19,
+          "small_l": 8
         },
         "WE": {
           "w": 6,
@@ -166,9 +166,9 @@
         },
         "TT": {
           "w": 3,
-          "l": 7,
-          "small_w": 10,
-          "small_l": 16
+          "l": 8,
+          "small_w": 11,
+          "small_l": 18
         },
         "LGD": {
           "w": 3,
@@ -198,10 +198,10 @@
       "format": "double_round_robin_bo3",
       "records": {
         "NIP": {
-          "w": 4,
+          "w": 5,
           "l": 0,
-          "small_w": 8,
-          "small_l": 2
+          "small_w": 10,
+          "small_l": 3
         },
         "IG": {
           "w": 3,
@@ -217,9 +217,9 @@
         },
         "LNG": {
           "w": 0,
-          "l": 4,
-          "small_w": 0,
-          "small_l": 8
+          "l": 5,
+          "small_w": 1,
+          "small_l": 10
         }
       },
       "games_played": 7,
@@ -249,27 +249,6 @@
     }
   },
   "remaining_schedule": [
-    {
-      "date": "2026-08-15",
-      "a": "NIP",
-      "b": "LNG",
-      "group": "nirvana",
-      "format": "bo3"
-    },
-    {
-      "date": "2026-08-15",
-      "a": "TT",
-      "b": "AL",
-      "group": "ascend",
-      "format": "bo3"
-    },
-    {
-      "date": "2026-08-15",
-      "a": "BLG",
-      "b": "WE",
-      "group": "ascend",
-      "format": "bo3"
-    },
     {
       "date": "2026-08-16",
       "a": "LGD",

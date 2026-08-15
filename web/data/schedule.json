@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-08-14",
+  "as_of": "2026-08-15",
   "count": 68,
   "matches": [
     {
@@ -486,9 +486,9 @@
       "date": "2026-08-15T15:00",
       "a": "NIP",
       "b": "LNG",
-      "score_a": null,
-      "score_b": null,
-      "status": "upcoming",
+      "score_a": 2,
+      "score_b": 1,
+      "status": "done",
       "group": "nirvana",
       "name": "NIP vs LNG"
     },
@@ -496,9 +496,9 @@
       "date": "2026-08-15T17:00",
       "a": "TT",
       "b": "AL",
-      "score_a": null,
-      "score_b": null,
-      "status": "upcoming",
+      "score_a": 1,
+      "score_b": 2,
+      "status": "done",
       "group": "ascend",
       "name": "TT vs AL"
     },
@@ -508,7 +508,7 @@
       "b": "WE",
       "score_a": null,
       "score_b": null,
-      "status": "upcoming",
+      "status": "2",
       "group": "ascend",
       "name": "BLG vs WE"
     },
