@@ -94,16 +94,26 @@
     }
 
     if (imp.impacts && imp.impacts.length) {
-      listEl.innerHTML = '<div class="impact-title">近 3 天 + IG 近 3 场 · 每场打完对概率的影响</div>' +
-        imp.impacts.map(m => {
-          const cls = m.impact >= 0 ? 'pos' : 'neg';
-          return `<div class="impact-row">
-            <span class="i-date">${m.date.slice(5)}</span>
-            <span class="i-match">${m.a} ${m.score} ${m.b}</span>
-            <span class="i-winner">胜 ${m.winner}</span>
-            <b class="${cls}">${delta(m.impact)}</b>
-          </div>`;
-        }).join('');
+      const igMs = imp.impacts.filter(m => m.a === 'IG' || m.b === 'IG');
+      const otherMs = imp.impacts.filter(m => !(m.a === 'IG' || m.b === 'IG'));
+      const row = (m) => {
+        const cls = m.impact >= 0 ? 'pos' : 'neg';
+        return `<div class="impact-row">
+          <span class="i-date">${m.date.slice(5)}</span>
+          <span class="i-match">${m.a} ${m.score} ${m.b}</span>
+          <span class="i-winner">胜 ${m.winner}</span>
+          <b class="${cls}">${delta(m.impact)}</b>
+        </div>`;
+      };
+      const block = (title, ms) => `
+        <div class="impact-group">
+          <div class="impact-title">${title}</div>
+          ${ms.map(row).join('')}
+        </div>`;
+      let html = '';
+      if (igMs.length) html += block('IG 近 3 场', igMs);
+      if (otherMs.length) html += block('近 3 天其他比赛', otherMs);
+      listEl.innerHTML = html;
     }
   }
 

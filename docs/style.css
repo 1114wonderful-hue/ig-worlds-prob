@@ -118,6 +118,8 @@ code { background: #1d2330; padding: 2px 6px; border-radius: 4px; font-size: 13p
 .next-row span { color: var(--muted); }
 .next-row b { font-size: 16px; }
 .impact-title { color: var(--muted); font-size: 13px; margin-bottom: 10px; }
+.impact-group { margin-bottom: 16px; }
+.impact-group:last-child { margin-bottom: 0; }
 .impact-row {
   display: flex; align-items: center; gap: 14px; padding: 9px 4px;
   border-bottom: 1px solid var(--line); font-size: 14px;
