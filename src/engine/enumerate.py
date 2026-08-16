@@ -144,7 +144,9 @@ def ascend_dp(games: List[Dict], base_records: Dict[str, Tuple[int, int]],
 
         def assign(gi, b, ww):
             if gi == len(groups):
-                key = (tuple(sorted(b[0])), tuple(sorted(b[1])), tuple(sorted(b[2])))
+                # top2/mid4 内部对称可无序；bottom2 需保持排名序
+                # （骑士之路配对 A7 v N2、A8 v N1 依赖第 7/第 8 的顺序）
+                key = (tuple(sorted(b[0])), tuple(sorted(b[1])), tuple(b[2]))
                 results[key] = results.get(key, 0.0) + ww
                 return
             _, members = groups[gi]
