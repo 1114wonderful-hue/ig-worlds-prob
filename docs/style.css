@@ -106,3 +106,23 @@ code { background: #1d2330; padding: 2px 6px; border-radius: 4px; font-size: 13p
   font-size: 12px; font-weight: 800;
 }
 .m-score { font-size: 16px; font-weight: 800; color: var(--text); letter-spacing: 1px; }
+
+/* ===== 比赛影响分析 ===== */
+.pos { color: #4cd97b; }
+.neg { color: #ff6b6b; }
+.delta { font-size: 12px; opacity: .85; }
+.next-card { border: 1px solid rgba(212, 175, 55, .35); border-radius: 10px; padding: 14px 16px; margin-bottom: 14px; }
+.next-title { font-size: 15px; font-weight: 700; margin-bottom: 10px; }
+.next-rows { display: flex; gap: 24px; flex-wrap: wrap; }
+.next-row { display: flex; align-items: center; gap: 10px; font-size: 14px; }
+.next-row span { color: var(--muted); }
+.next-row b { font-size: 16px; }
+.impact-title { color: var(--muted); font-size: 13px; margin-bottom: 10px; }
+.impact-row {
+  display: flex; align-items: center; gap: 14px; padding: 9px 4px;
+  border-bottom: 1px solid var(--line); font-size: 14px;
+}
+.impact-row:last-child { border-bottom: none; }
+.i-date { color: var(--muted); font-size: 13px; width: 52px; }
+.i-match { font-weight: 600; min-width: 130px; }
+.i-winner { color: var(--muted); font-size: 13px; flex: 1; }

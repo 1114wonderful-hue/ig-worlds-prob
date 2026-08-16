@@ -102,6 +102,16 @@ def main():
         json.dump(current, f, ensure_ascii=False, indent=2)
     print('最新结果已写入: data/current.json')
 
+    # 比赛影响分析（已结束比赛影响 + IG 下一场预测）
+    try:
+        import subprocess
+        r = subprocess.run([sys.executable, os.path.join(ROOT, 'scripts', 'impact.py'), '--quiet'],
+                           capture_output=True, text=True, timeout=600)
+        if r.returncode != 0:
+            print(f'⚠️ 影响分析未完成（不影响主结果）: {r.stderr[-200:]}')
+    except Exception as e:
+        print(f'⚠️ 影响分析未完成（不影响主结果）: {e}')
+
     # 生成趋势数据（追加到 data/trend.json）
     trend_path = os.path.join(ROOT, 'data', 'trend.json')
     trend = []

@@ -63,6 +63,52 @@
 
   load();
 
+  // ============ 比赛影响分析模块 ============
+  async function loadImpact() {
+    let imp = null;
+    try {
+      imp = await (await fetch('data/impact.json')).json();
+    } catch (e) {
+      document.getElementById('impact-empty').style.display = 'block';
+      return;
+    }
+    const nextBox = document.getElementById('ig-next-box');
+    const listEl = document.getElementById('impact-list');
+    const fmt = (v) => (v * 100).toFixed(2) + '%';
+    const delta = (v) => (v >= 0 ? '▲ +' : '▼ ') + (v * 100).toFixed(2) + '%';
+
+    if (imp.ig_next) {
+      const g = imp.ig_next;
+      const winCls = g.delta_win >= 0 ? 'pos' : 'neg';
+      const loseCls = g.delta_lose >= 0 ? 'pos' : 'neg';
+      nextBox.innerHTML = `
+        <div class="next-card">
+          <div class="next-title">🎯 IG 下一场：${g.date.slice(5)} ${g.a} vs ${g.b}</div>
+          <div class="next-rows">
+            <div class="next-row"><span>若 IG 赢</span><b class="${winCls}">${fmt(g.p_if_ig_win)} <span class="delta">${delta(g.delta_win)}</span></b></div>
+            <div class="next-row"><span>若 IG 输</span><b class="${loseCls}">${fmt(g.p_if_ig_lose)} <span class="delta">${delta(g.delta_lose)}</span></b></div>
+          </div>
+        </div>`;
+    } else {
+      nextBox.innerHTML = `<div class="next-card muted small">暂无 IG 比赛安排（等赛程公布后自动显示预测）</div>`;
+    }
+
+    if (imp.impacts && imp.impacts.length) {
+      listEl.innerHTML = '<div class="impact-title">近 3 天 + IG 近 3 场 · 每场打完对概率的影响</div>' +
+        imp.impacts.map(m => {
+          const cls = m.impact >= 0 ? 'pos' : 'neg';
+          return `<div class="impact-row">
+            <span class="i-date">${m.date.slice(5)}</span>
+            <span class="i-match">${m.a} ${m.score} ${m.b}</span>
+            <span class="i-winner">胜 ${m.winner}</span>
+            <b class="${cls}">${delta(m.impact)}</b>
+          </div>`;
+        }).join('');
+    }
+  }
+
+  loadImpact();
+
   // ============ 赛程模块 ============
   const TEAM_NAME = {
     AL: 'AL', BLG: 'BLG', EDG: 'EDG', IG: 'IG', JDG: 'JDG', LGD: 'LGD',
