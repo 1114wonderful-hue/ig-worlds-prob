@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-08-20",
+  "as_of": "2026-08-21",
   "count": 68,
   "matches": [
     {
@@ -586,51 +586,51 @@
       "date": "2026-08-20T19:00",
       "a": "LGD",
       "b": "BLG",
-      "score_a": null,
-      "score_b": null,
-      "status": "2",
+      "score_a": 1,
+      "score_b": 2,
+      "status": "done",
       "group": "ascend",
       "name": "LGD vs BLG"
     },
     {
       "date": "2026-08-21T15:00",
-      "a": "TT",
-      "b": "EDG",
-      "score_a": null,
-      "score_b": null,
-      "status": "upcoming",
+      "a": "EDG",
+      "b": "TT",
+      "score_a": 2,
+      "score_b": 0,
+      "status": "done",
       "group": "ascend",
-      "name": "TT vs EDG"
+      "name": "EDG vs TT"
     },
     {
       "date": "2026-08-21T17:00",
       "a": "AL",
       "b": "WE",
-      "score_a": null,
-      "score_b": null,
-      "status": "upcoming",
+      "score_a": 1,
+      "score_b": 2,
+      "status": "done",
       "group": "ascend",
       "name": "AL vs WE"
     },
     {
       "date": "2026-08-21T19:00",
-      "a": "BLG",
-      "b": "TES",
+      "a": "TES",
+      "b": "BLG",
       "score_a": null,
       "score_b": null,
-      "status": "upcoming",
+      "status": "2",
       "group": "ascend",
-      "name": "BLG vs TES"
+      "name": "TES vs BLG"
     },
     {
       "date": "2026-08-22T15:00",
-      "a": "LGD",
-      "b": "WE",
+      "a": "WE",
+      "b": "LGD",
       "score_a": null,
       "score_b": null,
       "status": "upcoming",
       "group": "ascend",
-      "name": "LGD vs WE"
+      "name": "WE vs LGD"
     },
     {
       "date": "2026-08-22T17:00",
@@ -664,23 +664,23 @@
     },
     {
       "date": "2026-08-23T17:00",
-      "a": "JDG",
-      "b": "EDG",
+      "a": "EDG",
+      "b": "JDG",
       "score_a": null,
       "score_b": null,
       "status": "upcoming",
       "group": "ascend",
-      "name": "JDG vs EDG"
+      "name": "EDG vs JDG"
     },
     {
       "date": "2026-08-23T19:00",
-      "a": "AL",
-      "b": "BLG",
+      "a": "BLG",
+      "b": "AL",
       "score_a": null,
       "score_b": null,
       "status": "upcoming",
       "group": "ascend",
-      "name": "AL vs BLG"
+      "name": "BLG vs AL"
     }
   ]
 }
