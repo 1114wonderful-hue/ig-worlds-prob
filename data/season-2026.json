@@ -1,7 +1,7 @@
 {
   "year": 2026,
   "season_stage": "split3_group_stage",
-  "as_of": "2026-08-21",
+  "as_of": "2026-08-22",
   "target_team": "IG",
   "description": "2026 LPL 第三赛段数据快照。第一/第二赛段名次积分来自萌娘百科 2026 页面；第三赛段战绩为该页面快照（登峰组/涅槃组）。剩余赛程（remaining_schedule）待爬虫+人工校验填充（阶段3）。",
   "teams": [
@@ -136,14 +136,14 @@
       "records": {
         "TES": {
           "w": 9,
-          "l": 3,
+          "l": 4,
           "small_w": 18,
-          "small_l": 9
+          "small_l": 11
         },
         "BLG": {
-          "w": 10,
+          "w": 11,
           "l": 2,
-          "small_w": 21,
+          "small_w": 23,
           "small_l": 9
         },
         "AL": {
@@ -154,9 +154,9 @@
         },
         "WE": {
           "w": 7,
-          "l": 6,
-          "small_w": 15,
-          "small_l": 15
+          "l": 7,
+          "small_w": 16,
+          "small_l": 17
         },
         "JDG": {
           "w": 6,
@@ -171,10 +171,10 @@
           "small_l": 22
         },
         "LGD": {
-          "w": 4,
+          "w": 5,
           "l": 8,
-          "small_w": 13,
-          "small_l": 17
+          "small_w": 15,
+          "small_l": 18
         },
         "EDG": {
           "w": 2,
@@ -198,16 +198,16 @@
       "format": "double_round_robin_bo3",
       "records": {
         "NIP": {
-          "w": 5,
+          "w": 6,
           "l": 0,
-          "small_w": 10,
+          "small_w": 12,
           "small_l": 3
         },
         "IG": {
           "w": 4,
-          "l": 1,
+          "l": 2,
           "small_w": 9,
-          "small_l": 4
+          "small_l": 6
         },
         "WBG": {
           "w": 2,
@@ -249,27 +249,6 @@
     }
   },
   "remaining_schedule": [
-    {
-      "date": "2026-08-22",
-      "a": "WE",
-      "b": "LGD",
-      "group": "ascend",
-      "format": "bo3"
-    },
-    {
-      "date": "2026-08-22",
-      "a": "NIP",
-      "b": "IG",
-      "group": "nirvana",
-      "format": "bo3"
-    },
-    {
-      "date": "2026-08-22",
-      "a": "JDG",
-      "b": "TES",
-      "group": "ascend",
-      "format": "bo3"
-    },
     {
       "date": "2026-08-23",
       "a": "TT",
