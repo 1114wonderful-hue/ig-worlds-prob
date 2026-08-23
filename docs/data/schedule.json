@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-08-22",
+  "as_of": "2026-08-23",
   "count": 68,
   "matches": [
     {
@@ -646,9 +646,9 @@
       "date": "2026-08-22T19:00",
       "a": "JDG",
       "b": "TES",
-      "score_a": null,
-      "score_b": null,
-      "status": "2",
+      "score_a": 2,
+      "score_b": 0,
+      "status": "done",
       "group": "ascend",
       "name": "JDG vs TES"
     },
@@ -656,9 +656,9 @@
       "date": "2026-08-23T15:00",
       "a": "TT",
       "b": "LGD",
-      "score_a": null,
-      "score_b": null,
-      "status": "upcoming",
+      "score_a": 0,
+      "score_b": 2,
+      "status": "done",
       "group": "ascend",
       "name": "TT vs LGD"
     },
@@ -666,9 +666,9 @@
       "date": "2026-08-23T17:00",
       "a": "EDG",
       "b": "JDG",
-      "score_a": null,
-      "score_b": null,
-      "status": "upcoming",
+      "score_a": 1,
+      "score_b": 2,
+      "status": "done",
       "group": "ascend",
       "name": "EDG vs JDG"
     },
@@ -678,7 +678,7 @@
       "b": "AL",
       "score_a": null,
       "score_b": null,
-      "status": "upcoming",
+      "status": "2",
       "group": "ascend",
       "name": "BLG vs AL"
     }

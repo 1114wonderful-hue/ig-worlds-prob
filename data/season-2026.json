@@ -1,7 +1,7 @@
 {
   "year": 2026,
   "season_stage": "split3_group_stage",
-  "as_of": "2026-08-22",
+  "as_of": "2026-08-23",
   "target_team": "IG",
   "description": "2026 LPL 第三赛段数据快照。第一/第二赛段名次积分来自萌娘百科 2026 页面；第三赛段战绩为该页面快照（登峰组/涅槃组）。剩余赛程（remaining_schedule）待爬虫+人工校验填充（阶段3）。",
   "teams": [
@@ -136,9 +136,9 @@
       "records": {
         "TES": {
           "w": 9,
-          "l": 4,
+          "l": 5,
           "small_w": 18,
-          "small_l": 11
+          "small_l": 13
         },
         "BLG": {
           "w": 11,
@@ -159,28 +159,28 @@
           "small_l": 17
         },
         "JDG": {
-          "w": 6,
+          "w": 8,
           "l": 6,
-          "small_w": 16,
-          "small_l": 16
+          "small_w": 20,
+          "small_l": 17
         },
         "TT": {
           "w": 3,
-          "l": 10,
+          "l": 11,
           "small_w": 12,
-          "small_l": 22
+          "small_l": 24
         },
         "LGD": {
-          "w": 5,
+          "w": 6,
           "l": 8,
-          "small_w": 15,
+          "small_w": 17,
           "small_l": 18
         },
         "EDG": {
           "w": 2,
-          "l": 11,
-          "small_w": 6,
-          "small_l": 22
+          "l": 12,
+          "small_w": 7,
+          "small_l": 24
         }
       },
       "games_played": 33,
@@ -248,28 +248,6 @@
       "champion_is_seed1": true
     }
   },
-  "remaining_schedule": [
-    {
-      "date": "2026-08-23",
-      "a": "TT",
-      "b": "LGD",
-      "group": "ascend",
-      "format": "bo3"
-    },
-    {
-      "date": "2026-08-23",
-      "a": "EDG",
-      "b": "JDG",
-      "group": "ascend",
-      "format": "bo3"
-    },
-    {
-      "date": "2026-08-23",
-      "a": "BLG",
-      "b": "AL",
-      "group": "ascend",
-      "format": "bo3"
-    }
-  ],
+  "remaining_schedule": [],
   "remaining_schedule_note": "⚠️ 待填充：第三赛段剩余 5 场（涅槃组）+ 23 场（登峰组）的具体对阵与日期，由阶段3爬虫+人工校验录入"
 }
