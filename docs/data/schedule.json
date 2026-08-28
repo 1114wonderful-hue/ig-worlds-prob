@@ -1,6 +1,6 @@
 {
-  "as_of": "2026-08-23",
-  "count": 68,
+  "as_of": "2026-08-28",
+  "count": 70,
   "matches": [
     {
       "date": "2026-07-22T17:00",
@@ -676,11 +676,31 @@
       "date": "2026-08-23T19:00",
       "a": "BLG",
       "b": "AL",
-      "score_a": null,
-      "score_b": null,
-      "status": "2",
+      "score_a": 2,
+      "score_b": 1,
+      "status": "done",
       "group": "ascend",
       "name": "BLG vs AL"
+    },
+    {
+      "date": "2026-08-28T14:00",
+      "a": "EDG",
+      "b": "NIP",
+      "score_a": 0,
+      "score_b": 3,
+      "status": "done",
+      "group": "nirvana",
+      "name": "EDG vs NIP"
+    },
+    {
+      "date": "2026-08-28T17:00",
+      "a": "TT",
+      "b": "IG",
+      "score_a": 0,
+      "score_b": 3,
+      "status": "done",
+      "group": "nirvana",
+      "name": "TT vs IG"
     }
   ]
 }
