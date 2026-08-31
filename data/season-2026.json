@@ -1,7 +1,7 @@
 {
   "year": 2026,
   "season_stage": "split3_group_stage",
-  "as_of": "2026-08-30",
+  "as_of": "2026-08-31",
   "target_team": "IG",
   "description": "2026 LPL 第三赛段数据快照。第一/第二赛段名次积分来自萌娘百科 2026 页面；第三赛段战绩为该页面快照（登峰组/涅槃组）。剩余赛程（remaining_schedule）待爬虫+人工校验填充（阶段3）。",
   "teams": [
