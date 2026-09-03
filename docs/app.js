@@ -1,11 +1,11 @@
-// app.js — 加载 data/current.json 与 data/trend.json 渲染页面
+﻿// app.js — 加载 data/current.json 与 data/trend.json 渲染页面
 (function () {
   const pct = (v) => (v * 100).toFixed(2) + '%';
 
   async function load() {
     const [cur, trend] = await Promise.all([
-      fetch('data/current.json').then(r => r.json()).catch(() => null),
-      fetch('data/trend.json').then(r => r.json()).catch(() => null),
+      fetch('data/current.json', { cache: 'no-store' }).then(r => r.json()).catch(() => null),
+      fetch('data/trend.json', { cache: 'no-store' }).then(r => r.json()).catch(() => null),
     ]);
     if (!cur) {
       document.getElementById('big-number').textContent = '--';
@@ -73,7 +73,7 @@
   async function loadImpact() {
     let imp = null;
     try {
-      imp = await (await fetch('data/impact.json')).json();
+      imp = await (await fetch('data/impact.json', { cache: 'no-store' })).json();
     } catch (e) {
       document.getElementById('impact-empty').style.display = 'block';
       return;
@@ -137,7 +137,7 @@
 
   async function loadSchedule() {
     try {
-      scheduleData = await (await fetch('data/schedule.json')).json();
+      scheduleData = await (await fetch('data/schedule.json', { cache: 'no-store' })).json();
     } catch (e) {
       document.getElementById('schedule-list').innerHTML =
         '<div class="chart-empty">赛程数据暂不可用（稍后自动更新）</div>';
@@ -145,7 +145,7 @@
     }
     // 队伍中文名（可选增强，失败不影响赛程显示）
     try {
-      const s = await (await fetch('data/season-2026.json')).json();
+      const s = await (await fetch('data/season-2026.json', { cache: 'no-store' })).json();
       s.teams.forEach(t => { TEAM_NAME[t.id] = t.name.replace(/\s*\(.*\)/, ''); });
     } catch (e) { /* 使用内置映射即可 */ }
     document.getElementById('team-search').addEventListener('input', (ev) => {
