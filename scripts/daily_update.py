@@ -46,7 +46,7 @@ def snapshot(season, results, date):
         'p_seed1': results['p_seed1'], 'p_seed2': results['p_seed2'],
         'p_seed3': results['p_seed3'], 'p_seed4': results['p_seed4'],
         'breakdown': results['breakdown'],
-        'ig_base_points': results['ig_base_points'],
+        'ig_base_points': results.get('ig_base_points', 0),
         'season_snapshot': season,
     }
     with open(path, 'w', encoding='utf-8') as f:
