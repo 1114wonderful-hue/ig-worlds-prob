@@ -131,6 +131,91 @@ def main():
             json.dump(schedule, f, ensure_ascii=False, indent=2)
     print(f'✅ 赛程已输出: data/schedule.json + web/data/schedule.json（{len(matches_out)} 场）')
 
+    # 4) 季后赛阶段维护：识别接口中的赛季季后赛比赛，回放更新 playoffs.fixed
+    update_playoffs(season, data)
+
+
+# 季后赛双败模板（与 src/engine/playoffs.py 的 _run_bracket 12 场对应）
+PO_DEPS = {
+    0: ('S3', 'S6'), 1: ('S4', 'S5'),
+    2: ('K1', ('L', 0)), 3: ('K2', ('L', 1)),
+    4: ('S1', ('W', 0)), 5: ('S2', ('W', 1)),
+    6: (('W', 2), ('L', 4)), 7: (('W', 3), ('L', 5)),
+    8: (('W', 4), ('W', 5)), 9: (('W', 6), ('W', 7)),
+    10: (('L', 8), ('W', 9)), 11: (('W', 8), ('W', 10)),
+}
+# 2026 第三赛段季后赛 8 队槽位（由真实对阵反推；若官方调整需同步这里）
+DEFAULT_PO_SLOTS = {'S1': 'AL', 'S2': 'BLG', 'S3': 'TES', 'S4': 'JDG',
+                    'S5': 'WE', 'S6': 'LGD', 'K1': 'IG', 'K2': 'NIP'}
+
+
+def _po_team(slots, win, lose, ref):
+    if isinstance(ref, str):
+        return slots.get(ref)
+    kind, j = ref
+    return win[j] if kind == 'W' else lose[j]
+
+
+def update_playoffs(season, data):
+    """把接口中的季后赛已结束比赛回放成 playoffs.fixed，并切 season_stage。"""
+    po_matches = [m for m in data.get('msg', [])
+                  if m.get('GameTypeName', '') == '2026赛季季后赛' and m.get('MatchStatus') == '3']
+    if not po_matches:
+        # 无季后赛（组内赛阶段）且 season 仍是组内赛 → 保持原状
+        if season.get('season_stage') != 'playoffs':
+            return
+    po_matches.sort(key=lambda m: m['MatchDate'])
+    po = season.setdefault('playoffs', {})
+    po.setdefault('slots', dict(DEFAULT_PO_SLOTS))
+    slots = po['slots']
+
+    def derive():
+        win = [None] * 12
+        lose = [None] * 12
+        pairs = {}
+        fixed = {int(k): int(v) for k, v in po.get('fixed', {}).items()}
+        changed = True
+        while changed:
+            changed = False
+            for i, (ra, rb) in PO_DEPS.items():
+                a = _po_team(slots, win, lose, ra)
+                b = _po_team(slots, win, lose, rb)
+                if a and b:
+                    pairs[i] = (a, b)
+                if i in fixed and win[i] is None and a and b:
+                    win[i] = a if fixed[i] == 1 else b
+                    lose[i] = b if fixed[i] == 1 else a
+                    changed = True
+        return pairs, {int(k): int(v) for k, v in po.get('fixed', {}).items()}
+
+    new_fixed = {int(k): int(v) for k, v in po.get('fixed', {}).items()}
+    for m in po_matches:
+        a, b = m['TeamShortNameA'], m['TeamShortNameB']
+        winner = a if int(m['ScoreA']) > int(m['ScoreB']) else b
+        pairs, fixed = derive()
+        # 找对阵 == {a, b} 的场次（已固定则校验，未固定则新增）
+        hit = None
+        for i, (pa, pb) in pairs.items():
+            if {pa, pb} == {a, b}:
+                hit = i
+                break
+        if hit is None:
+            print(f'⚠️ 无法匹配季后赛已结束比赛: {a} vs {b}（检查 slots 或该场待定）')
+            continue
+        fw = 1 if winner == pairs[hit][0] else 0
+        if hit in new_fixed:
+            if new_fixed[hit] != fw:
+                print(f'⚠️ 第{hit}场结果与新回放不一致（{a} vs {b}，winner={winner}）')
+        else:
+            new_fixed[hit] = fw
+            print(f'  季后赛回放: 第{hit}场 {a} vs {b} → {winner} 胜')
+
+    season['playoffs']['fixed'] = {str(k): int(v) for k, v in sorted(new_fixed.items())}
+    season['season_stage'] = 'playoffs'
+    with open(SEASON_PATH, 'w', encoding='utf-8') as f:
+        json.dump(season, f, ensure_ascii=False, indent=2)
+    print(f"✅ 季后赛状态已更新（已固定 {len(new_fixed)} 场）")
+
 
 if __name__ == '__main__':
     main()

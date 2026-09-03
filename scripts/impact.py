@@ -80,6 +80,139 @@ def main():
     args = ap.parse_args()
 
     season = json.load(open(SEASON_PATH, encoding='utf-8'))
+    if season.get('season_stage') == 'playoffs':
+        _main_playoffs(season, args)
+        return
+    _main_group(season, args)
+
+
+# 季后赛双败模板：每场双方引用（槽位 / W=胜者 / L=败者）
+PO_DEPS = {
+    0: ('S3', 'S6'), 1: ('S4', 'S5'),
+    2: ('K1', ('L', 0)), 3: ('K2', ('L', 1)),
+    4: ('S1', ('W', 0)), 5: ('S2', ('W', 1)),
+    6: (('W', 2), ('L', 4)), 7: (('W', 3), ('L', 5)),
+    8: (('W', 4), ('W', 5)), 9: (('W', 6), ('W', 7)),
+    10: (('L', 8), ('W', 9)), 11: (('W', 8), ('W', 10)),
+}
+
+
+def _po_team(slots, win, lose, ref):
+    if isinstance(ref, str):
+        return slots[ref]
+    kind, j = ref
+    return win[j] if kind == 'W' else lose[j]
+
+
+def _resolve_playoffs(slots, fixed):
+    """按模板解析各场对阵。返回 {i: dict(a,b,winner)}（结果已知的场次）。"""
+    win = [None] * 12
+    lose = [None] * 12
+    out = {}
+    for _ in range(15):  # 迭代直至稳定
+        progressed = False
+        for i, (ra, rb) in PO_DEPS.items():
+            if i in out or i not in fixed:
+                continue
+            a = _po_team(slots, win, lose, ra)
+            b = _po_team(slots, win, lose, rb)
+            if a is None or b is None:
+                continue
+            ws = a if fixed[i] == 1 else b
+            ls = b if fixed[i] == 1 else a
+            win[i], lose[i] = ws, ls
+            out[i] = {'a': a, 'b': b, 'winner': ws}
+            progressed = True
+        if not progressed:
+            break
+    return out
+
+
+def _find_ig_next(slots, fixed, resolved, target='IG'):
+    """沿双败路径找 IG 下一场（第一个涉及 IG 且未固定结果的场次）。"""
+    for i, (ra, rb) in PO_DEPS.items():
+        if i in fixed:
+            continue
+        # 能确定对阵才考虑
+        a = b = None
+        # 简化：用 resolved 推导；此处借用解析器能力——若双方可确定
+        win = [None] * 12
+        lose = [None] * 12
+        # 直接按当前 fixed 重解析一次以判断本场双方
+        for ii in sorted(fixed):
+            a2 = _po_team(slots, win, lose, PO_DEPS[ii][0])
+            b2 = _po_team(slots, win, lose, PO_DEPS[ii][1])
+            ws = a2 if fixed[ii] == 1 else b2
+            ls = b2 if fixed[ii] == 1 else a2
+            win[ii], lose[ii] = ws, ls
+        a = _po_team(slots, win, lose, ra)
+        b = _po_team(slots, win, lose, rb)
+        if a is None or b is None:
+            continue
+        if target in (a, b):
+            return i, (a, b)
+    return None, None
+
+
+def _main_playoffs(season, args):
+    rules = json.load(open(RULES_PATH, encoding='utf-8'))
+    po = season['playoffs']
+    slots = po['slots']
+    fixed = {int(k): int(v) for k, v in po.get('fixed', {}).items()}
+    if not args.quiet:
+        print('季后赛阶段影响分析…')
+    p_now = compute_ig_probability(season, rules)['p_qualify']
+    resolved = _resolve_playoffs(slots, fixed)
+
+    impacts = []
+    for i in sorted(fixed):
+        f2 = {k: v for k, v in fixed.items() if k != i}
+        s2 = copy.deepcopy(season)
+        s2['playoffs']['fixed'] = {str(k): str(v) for k, v in f2.items()}
+        p2 = compute_ig_probability(s2, rules)['p_qualify']
+        m = resolved.get(i, {})
+        impacts.append({
+            'date': f'轮次{i}', 'a': m.get('a', '?'), 'b': m.get('b', '?'),
+            'score': 'BO5', 'winner': m.get('winner', '?'),
+            'p_before': p2, 'p_after': p_now, 'impact': p_now - p2,
+            'playoff_round': i,
+        })
+
+    next_pred = None
+    nxt_i, pair = _find_ig_next(slots, fixed, resolved)
+    if nxt_i is not None:
+        if not args.quiet:
+            print(f'计算下一场预测（第{nxt_i}场 {pair[0]} vs {pair[1]}）…')
+        ig_side = pair.index('IG')  # 0 或 1
+        fw = dict(fixed); fl = dict(fixed)
+        if ig_side == 0:   # IG 是场次第一候选：o=1 → IG 胜
+            fw[nxt_i] = 1; fl[nxt_i] = 0
+        else:
+            fw[nxt_i] = 0; fl[nxt_i] = 1
+        sw = copy.deepcopy(season); sl = copy.deepcopy(season)
+        sw['playoffs']['fixed'] = {str(k): str(v) for k, v in fw.items()}
+        sl['playoffs']['fixed'] = {str(k): str(v) for k, v in fl.items()}
+        p_win = compute_ig_probability(sw, rules)['p_qualify']
+        p_lose = compute_ig_probability(sl, rules)['p_qualify']
+        next_pred = {
+            'date': '季后赛', 'a': pair[0], 'b': pair[1], 'group': 'playoffs',
+            'p_if_ig_win': p_win, 'p_if_ig_lose': p_lose,
+            'delta_win': p_win - p_now, 'delta_lose': p_lose - p_now,
+        }
+
+    out = {'as_of': season.get('as_of', ''), 'stage': 'playoffs', 'p_now': p_now,
+           'impacts': impacts, 'ig_next': next_pred}
+    for p in (os.path.join(ROOT, 'data', 'impact.json'),
+              os.path.join(ROOT, 'web', 'data', 'impact.json')):
+        os.makedirs(os.path.dirname(p), exist_ok=True)
+        with open(p, 'w', encoding='utf-8') as f:
+            json.dump(out, f, ensure_ascii=False, indent=2)
+    if not args.quiet:
+        print(f'✅ 季后赛影响分析已输出（当前概率 {p_now*100:.3f}%，{len(impacts)} 场影响，'
+              f'下一场预测 {"有" if next_pred else "无"}）')
+
+
+def _main_group(season, args):
     rules = json.load(open(RULES_PATH, encoding='utf-8'))
     schedule = json.load(open(SCHEDULE_PATH, encoding='utf-8'))
     asc_teams = set(season['split3']['ascend']['teams'])

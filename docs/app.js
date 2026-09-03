@@ -34,6 +34,12 @@
       `IG 当前全年积分 ${cur.ig_base_points} 分 · 剩余 ${cur.remaining_games} 场比赛待定 · ` +
       `引擎分解：${cur.nirvana_cases} 个涅槃类别 × ${cur.ascend_cases} 个登峰排名组合 × 4096 个季后赛分支`;
 
+    if (cur.stage === 'playoffs') {
+      const badge = document.getElementById('stage-badge');
+      badge.style.display = 'inline-block';
+      badge.textContent = '🏆 IG 已晋级季后赛 · 双败淘汰 BO5 进行中';
+    }
+
     if (trend && trend.length >= 2) {
       const chart = echarts.init(document.getElementById('trend-chart'));
       chart.setOption({

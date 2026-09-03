@@ -1,7 +1,7 @@
 {
   "year": 2026,
-  "season_stage": "split3_group_stage",
-  "as_of": "2026-08-16",
+  "season_stage": "playoffs",
+  "as_of": "2026-09-03",
   "target_team": "IG",
   "description": "2026 LPL 第三赛段数据快照。第一/第二赛段名次积分来自萌娘百科 2026 页面；第三赛段战绩为该页面快照（登峰组/涅槃组）。剩余赛程（remaining_schedule）待爬虫+人工校验填充（阶段3）。",
   "teams": [
@@ -135,52 +135,52 @@
       "format": "double_round_robin_bo3",
       "records": {
         "TES": {
-          "w": 7,
-          "l": 3,
-          "small_w": 14,
-          "small_l": 8
+          "w": 9,
+          "l": 5,
+          "small_w": 18,
+          "small_l": 13
         },
         "BLG": {
-          "w": 9,
+          "w": 12,
           "l": 2,
-          "small_w": 19,
-          "small_l": 8
+          "small_w": 25,
+          "small_l": 10
         },
         "AL": {
           "w": 9,
-          "l": 2,
-          "small_w": 19,
-          "small_l": 8
+          "l": 5,
+          "small_w": 22,
+          "small_l": 14
         },
         "WE": {
-          "w": 6,
-          "l": 5,
-          "small_w": 13,
-          "small_l": 12
+          "w": 7,
+          "l": 7,
+          "small_w": 16,
+          "small_l": 17
         },
         "JDG": {
-          "w": 5,
+          "w": 8,
           "l": 6,
-          "small_w": 14,
-          "small_l": 15
+          "small_w": 20,
+          "small_l": 17
         },
         "TT": {
           "w": 3,
-          "l": 8,
-          "small_w": 11,
-          "small_l": 18
+          "l": 11,
+          "small_w": 12,
+          "small_l": 24
         },
         "LGD": {
-          "w": 4,
-          "l": 7,
-          "small_w": 12,
-          "small_l": 15
+          "w": 6,
+          "l": 8,
+          "small_w": 17,
+          "small_l": 18
         },
         "EDG": {
-          "w": 0,
-          "l": 10,
-          "small_w": 2,
-          "small_l": 20
+          "w": 2,
+          "l": 12,
+          "small_w": 7,
+          "small_l": 24
         }
       },
       "games_played": 33,
@@ -198,28 +198,28 @@
       "format": "double_round_robin_bo3",
       "records": {
         "NIP": {
-          "w": 5,
+          "w": 6,
           "l": 0,
-          "small_w": 10,
+          "small_w": 12,
           "small_l": 3
         },
         "IG": {
           "w": 4,
-          "l": 1,
+          "l": 2,
           "small_w": 9,
-          "small_l": 4
+          "small_l": 6
         },
         "WBG": {
-          "w": 1,
+          "w": 2,
           "l": 4,
-          "small_w": 5,
-          "small_l": 8
+          "small_w": 7,
+          "small_l": 9
         },
         "LNG": {
           "w": 0,
-          "l": 5,
-          "small_w": 1,
-          "small_l": 10
+          "l": 6,
+          "small_w": 2,
+          "small_l": 12
         }
       },
       "games_played": 7,
@@ -248,105 +248,24 @@
       "champion_is_seed1": true
     }
   },
-  "remaining_schedule": [
-    {
-      "date": "2026-08-19",
-      "a": "LNG",
-      "b": "WBG",
-      "group": "nirvana",
-      "format": "bo3"
+  "remaining_schedule": [],
+  "remaining_schedule_note": "⚠️ 待填充：第三赛段剩余 5 场（涅槃组）+ 23 场（登峰组）的具体对阵与日期，由阶段3爬虫+人工校验录入",
+  "playoffs": {
+    "note": "2026 赛季季后赛（8 队双败 BO5）。slots 按真实对阵反推：AL/BLG 胜者组 R2 轮空，TES/LGD/JDG/WE 胜者组 R1，IG/NIP（骑士之路晋级）败者组 R1。fixed 为已打完场次（_run_bracket o 语义，o[i]=1 表示场次 i 第一个候选胜）。",
+    "slots": {
+      "S1": "AL",
+      "S2": "BLG",
+      "S3": "TES",
+      "S4": "JDG",
+      "S5": "WE",
+      "S6": "LGD",
+      "K1": "IG",
+      "K2": "NIP"
     },
-    {
-      "date": "2026-08-19",
-      "a": "AL",
-      "b": "TES",
-      "group": "ascend",
-      "format": "bo3"
-    },
-    {
-      "date": "2026-08-19",
-      "a": "WE",
-      "b": "EDG",
-      "group": "ascend",
-      "format": "bo3"
-    },
-    {
-      "date": "2026-08-20",
-      "a": "TT",
-      "b": "JDG",
-      "group": "ascend",
-      "format": "bo3"
-    },
-    {
-      "date": "2026-08-20",
-      "a": "LGD",
-      "b": "BLG",
-      "group": "ascend",
-      "format": "bo3"
-    },
-    {
-      "date": "2026-08-21",
-      "a": "TT",
-      "b": "EDG",
-      "group": "ascend",
-      "format": "bo3"
-    },
-    {
-      "date": "2026-08-21",
-      "a": "AL",
-      "b": "WE",
-      "group": "ascend",
-      "format": "bo3"
-    },
-    {
-      "date": "2026-08-21",
-      "a": "BLG",
-      "b": "TES",
-      "group": "ascend",
-      "format": "bo3"
-    },
-    {
-      "date": "2026-08-22",
-      "a": "LGD",
-      "b": "WE",
-      "group": "ascend",
-      "format": "bo3"
-    },
-    {
-      "date": "2026-08-22",
-      "a": "NIP",
-      "b": "IG",
-      "group": "nirvana",
-      "format": "bo3"
-    },
-    {
-      "date": "2026-08-22",
-      "a": "JDG",
-      "b": "TES",
-      "group": "ascend",
-      "format": "bo3"
-    },
-    {
-      "date": "2026-08-23",
-      "a": "TT",
-      "b": "LGD",
-      "group": "ascend",
-      "format": "bo3"
-    },
-    {
-      "date": "2026-08-23",
-      "a": "JDG",
-      "b": "EDG",
-      "group": "ascend",
-      "format": "bo3"
-    },
-    {
-      "date": "2026-08-23",
-      "a": "AL",
-      "b": "BLG",
-      "group": "ascend",
-      "format": "bo3"
+    "fixed": {
+      "0": 0,
+      "1": 0,
+      "5": 1
     }
-  ],
-  "remaining_schedule_note": "⚠️ 待填充：第三赛段剩余 5 场（涅槃组）+ 23 场（登峰组）的具体对阵与日期，由阶段3爬虫+人工校验录入"
+  }
 }

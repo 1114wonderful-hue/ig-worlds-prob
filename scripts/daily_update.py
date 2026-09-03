@@ -89,13 +89,15 @@ def main():
     # 输出最新结果供前端读取
     current = {
         'date': args.date,
+        'stage': res.get('stage', 'group'),
         'p_qualify': res['p_qualify'],
         'p_seed1': res['p_seed1'], 'p_seed2': res['p_seed2'],
         'p_seed3': res['p_seed3'], 'p_seed4': res['p_seed4'],
         'breakdown': res['breakdown'],
-        'ig_base_points': res['ig_base_points'],
-        'nirvana_cases': res['nirvana_cases'],
-        'ascend_cases': res['ascend_cases'],
+        'ig_base_points': res.get('ig_base_points', 0),
+        'nirvana_cases': res.get('nirvana_cases', 0),
+        'ascend_cases': res.get('ascend_cases', 0),
+        'playoff_branches': res.get('playoff_branches', 0),
         'remaining_games': len(season['remaining_schedule']),
     }
     with open(os.path.join(ROOT, 'data', 'current.json'), 'w', encoding='utf-8') as f:

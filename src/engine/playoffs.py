@@ -122,6 +122,51 @@ def simulate_slot_rank_outcomes() -> list:
     return outcomes
 
 
+# 12 场双败比赛的槽位语义（与 _run_bracket 一致，供固定结果时定位）
+MATCH_SLOTS = [
+    ('S3', 'S6'), ('S4', 'S5'),      # 0-1: WB R1
+    ('K1', None), ('K2', None),      # 2-3: LB R1（对手 = WB R1 败者）
+    ('S1', None), ('S2', None),      # 4-5: WB R2（对手 = WB R1 胜者）
+    (None, None), (None, None),      # 6-7: LB R2
+    (None, None), (None, None),      # 8: WB R3, 9: LB R3
+    (None, None), (None, None),      # 10: LB R4, 11: 总决赛
+]
+
+
+def simulate_playoffs_fixed(slots: Dict[str, str], fixed: Dict[int, int],
+                            target_slot: str = 'C1') -> Dict[str, Dict[str, float]]:
+    """季后赛模拟，支持固定部分场次的结果。
+
+    Parameters
+    ----------
+    slots : {槽位(S1..S6,K1,K2): 队伍名}；target 必须在其中
+    fixed : {场次索引(0..11): 0 或 1}，1 = 该场槽位字典序在前的队伍胜
+            （见 _run_bracket：o[i]=1 表示 tuple 中第一个槽位的队伍胜）。
+            为避免歧义，调用方固定时需保证语义正确（见调用处注释）。
+
+    返回 {team: {rank_label: prob}}（只对剩余不确定场次做等概率穷举）。
+    """
+    # 确定每场两方槽位（含动态推导），再穷举剩余场次
+    # 简化实现：固定分支 = 在 4096 全量中筛选满足 fixed 的 outcome
+    # （12 场全枚举仅 4096，直接筛选即可，无性能问题）
+    # 语义：o[i] 的第 0 个候选 vs 第 1 个候选 —— 使用槽位字母序（调用方保证一致性）
+    all_outcomes = []
+    legacy_slots = ['S1', 'S2', 'S3', 'S4', 'S5', 'S6', 'K1', 'K2']
+    for o in itertools.product([0, 1], repeat=12):
+        ok = all(o[i] == v for i, v in fixed.items())
+        if not ok:
+            continue
+        ranks = _run_bracket(slots, o)
+        all_outcomes.append(ranks)
+    total = len(all_outcomes)
+    dist = {}
+    for ranks in all_outcomes:
+        for team in slots.values():
+            d = dist.setdefault(team, {r: 0.0 for r in RANKS})
+            d[ranks[team]] += 1.0 / total
+    return dist
+
+
 def slot_to_split3_points(rank_label: str, split3_table: Dict) -> int:
     """名次档位 -> 第三赛段积分。"""
     for k, v in split3_table.items():

@@ -179,7 +179,82 @@ def compute_ig_probability(season: Dict, rules: Dict, verbose: bool = False) -> 
 
     season: data/season-2026.json 结构（需含 remaining_schedule，可为空）
     rules:  data/rules.json 结构
+
+    若 season 含 season_stage == 'playoffs' 且 playoffs.slots，则走季后赛阶段计算。
     """
+    if season.get('season_stage') == 'playoffs' and season.get('playoffs', {}).get('slots'):
+        return _compute_playoffs_stage(season, rules, verbose=verbose)
+    return _compute_group_stage(season, rules, verbose=verbose)
+
+
+def _rank_to_points(rank_label: str, split3_table: Dict) -> int:
+    for k, v in split3_table.items():
+        if k == rank_label or k == str(rank_label):
+            return int(v)
+    return 0
+
+
+def _compute_playoffs_stage(season: Dict, rules: Dict, verbose: bool = False) -> Dict:
+    """季后赛阶段：IG 已晋级（季后赛 8 队之一），穷举剩余 BO5 双败场次。
+
+    season.playoffs = {
+      "slots": {"S1": "AL", ..., "K1": "IG", "K2": "NIP"},   # 8 槽位分配
+      "fixed": {"0": 0, "1": 0, "5": 1},                       # 已打场次结果（_run_bracket o 语义）
+    }
+    """
+    import itertools as _it
+    from engine.playoffs import _run_bracket
+    target = season['target_team']
+    po = season['playoffs']
+    slots = po['slots']
+    fixed = {int(k): int(v) for k, v in po.get('fixed', {}).items()}
+    split3 = rules['points']['split3']['table']
+    pts_base = {t['id']: sum(season['points_earned'][t['id']].values()) for t in season['teams']
+                if t['id'] in season['points_earned']}
+    # 未进季后赛队伍：第三赛段 0 分（已确定）
+    playoff_teams = set(slots.values())
+
+    p_seed1 = p_seed2 = p_seed3 = p_seed4 = 0.0
+    bd = {'seed1': 0.0, 'seed2': 0.0, 'qualifier_upper': 0.0, 'qualifier_lower': 0.0, 'out': 0.0}
+    n = 0
+    for o in _it.product([0, 1], repeat=12):
+        if any(o[i] != v for i, v in fixed.items()):
+            continue
+        n += 1
+        ranks = _run_bracket(slots, o)
+        pts = dict(pts_base)
+        s3 = {}
+        champ = None
+        for team, rk in ranks.items():
+            pts[team] += _rank_to_points(rk, split3)
+            s3[team] = _rank_to_points(rk, split3)
+            if rk == '1':
+                champ = team
+        from engine.qualify import evaluate_qualification
+        r = evaluate_qualification(target, pts, s3, champ, rules)
+        p_seed1 += r.p_seed1
+        p_seed2 += r.p_seed2
+        p_seed3 += r.p_seed3
+        p_seed4 += r.p_seed4
+        bd[r.status] += 1.0
+    if n == 0:
+        raise RuntimeError('季后赛 fixed 结果无合法分支（检查 slots/fixed 配置）')
+    w = 1.0 / n
+    p_seed1 *= w; p_seed2 *= w; p_seed3 *= w; p_seed4 *= w
+    for k in bd:
+        bd[k] *= w
+    return {
+        'p_qualify': p_seed1 + p_seed2 + p_seed3 + p_seed4,
+        'p_seed1': p_seed1, 'p_seed2': p_seed2,
+        'p_seed3': p_seed3, 'p_seed4': p_seed4,
+        'breakdown': bd,
+        'stage': 'playoffs',
+        'playoff_branches': n,
+    }
+
+
+def _compute_group_stage(season: Dict, rules: Dict, verbose: bool = False) -> Dict:
+    """组内赛/骑士之路阶段（原 compute_ig_probability 主体）。"""
     target = season['target_team']
     asc = season['split3']['ascend']
     nir = season['split3']['nirvana']

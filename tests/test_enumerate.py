@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """穷举器/资格聚合单元测试。
 运行：python tests/test_enumerate.py
 """
@@ -12,6 +12,12 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SEASON = json.load(open(os.path.join(ROOT, 'data', 'season-2026.json'), encoding='utf-8'))
 RULES = json.load(open(os.path.join(ROOT, 'data', 'rules.json'), encoding='utf-8'))
 
+# 组内赛阶段测试基准：season 当前可能是 playoffs，测试用组内赛副本验证组内赛引擎
+SEASON_GROUP = copy.deepcopy(SEASON)
+SEASON_GROUP.pop('playoffs', None)
+SEASON_GROUP['season_stage'] = 'group'
+SEASON_GROUP['remaining_schedule'] = []
+
 passed = 0
 
 def check(name, cond):
@@ -20,8 +26,18 @@ def check(name, cond):
     passed += 1
     print(f'  ok - {name}')
 
-print('== 1. 空剩余赛程：守恒与基准 ==')
-res0 = compute_ig_probability(SEASON, RULES)
+print('== 0. 季后赛阶段引擎（若 season 为 playoffs）==')
+SEASON_MAYBE = json.load(open(os.path.join(ROOT, 'data', 'season-2026.json'), encoding='utf-8'))
+if SEASON_MAYBE.get('season_stage') == 'playoffs':
+    rp = compute_ig_probability(SEASON_MAYBE, RULES)
+    bdp = rp['breakdown']
+    totp = rp['p_seed1'] + rp['p_seed2'] + bdp['qualifier_upper'] + bdp['qualifier_lower'] + bdp['out']
+    check('季后赛模式权重守恒 = 1', abs(totp - 1.0) < 1e-9)
+    check('季后赛 IG 概率在合理区间', 0 < rp['p_qualify'] < 0.5)
+    print(f'  季后赛 IG 概率: {rp["p_qualify"]*100:.2f}%')
+
+print('== 1. 组内赛空赛程：守恒与基准 ==')
+res0 = compute_ig_probability(SEASON_GROUP, RULES)
 bd = res0['breakdown']
 tot = res0['p_seed1'] + res0['p_seed2'] + bd['qualifier_upper'] + bd['qualifier_lower'] + bd['out']
 check('breakdown 权重守恒 = 1', abs(tot - 1.0) < 1e-9)
@@ -30,16 +46,16 @@ check('IG 进世界赛概率 > 0 且 < 0.2', 0 < res0['p_qualify'] < 0.2)
 check('seed2 概率极小（IG 基础积分太低，仅极端分支可能）', 0 <= res0['p_seed2'] < 0.001)
 
 print('== 2. 涅槃剩余 1 场（IG vs WBG）：IG 输赢都不影响进前 2 → 概率不变 ==')
-base0 = copy.deepcopy(SEASON)
+base0 = copy.deepcopy(SEASON_GROUP)
 base0['remaining_schedule'] = []
 res_base = compute_ig_probability(base0, RULES)
-s2 = copy.deepcopy(SEASON)
+s2 = copy.deepcopy(SEASON_GROUP)
 s2['remaining_schedule'] = [{'a': 'IG', 'b': 'WBG', 'group': 'nirvana', 'format': 'bo3'}]
 res2 = compute_ig_probability(s2, RULES)
 check('概率与空基准一致', abs(res2['p_qualify'] - res_base['p_qualify']) < 1e-9)
 
 print('== 3. 涅槃剩余 3 场（IG 赛程不确定性）→ 概率守恒 ==')
-s3 = copy.deepcopy(SEASON)
+s3 = copy.deepcopy(SEASON_GROUP)
 s3['remaining_schedule'] = [
     {'a': 'IG', 'b': 'NIP', 'group': 'nirvana', 'format': 'bo3'},
     {'a': 'IG', 'b': 'WBG', 'group': 'nirvana', 'format': 'bo3'},
@@ -52,7 +68,7 @@ check('3 场场景权重守恒 = 1', abs(tot3 - 1.0) < 1e-9)
 check('IG 赛程不确定性下概率 ≤ 空基准（波动可控）', res3['p_qualify'] <= res_base['p_qualify'] + 0.01)
 
 print('== 4. 登峰组剩余 2 场（TES vs EDG、BLG vs EDG）：EDG 可能翻盘，IG 概率变化微小但守恒 ==')
-s4 = copy.deepcopy(SEASON)
+s4 = copy.deepcopy(SEASON_GROUP)
 s4['remaining_schedule'] = [
     {'a': 'TES', 'b': 'EDG', 'group': 'ascend', 'format': 'bo3'},
     {'a': 'BLG', 'b': 'EDG', 'group': 'ascend', 'format': 'bo3'},
@@ -64,9 +80,9 @@ check('breakdown 权重守恒 = 1（登峰 DP 路径）', abs(tot4 - 1.0) < 1e-9
 
 print('== 5. 大规模登峰剩余场次（23 场）DP 性能与守恒 ==')
 import time
-s5 = copy.deepcopy(SEASON)
+s5 = copy.deepcopy(SEASON_GROUP)
 # 构造登峰组剩余 23 场的演示赛程（任意双循环剩余场次，仅用于性能/守恒验证）
-asc_teams = list(SEASON['split3']['ascend']['teams'])
+asc_teams = list(SEASON_GROUP['split3']['ascend']['teams'])
 games = []
 # 简化：8 队循环补足，保证每场不重复（23 场演示数据）
 pairs = [(asc_teams[i], asc_teams[j]) for i in range(8) for j in range(i + 1, 8)]
