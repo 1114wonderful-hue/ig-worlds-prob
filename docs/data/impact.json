@@ -1,7 +1,7 @@
 {
-  "as_of": "2026-09-03",
+  "as_of": "2026-09-04",
   "stage": "playoffs",
-  "p_now": 0.08349609375,
+  "p_now": 0.09375,
   "impacts": [
     {
       "date": "轮次0",
@@ -9,9 +9,9 @@
       "b": "LGD",
       "score": "BO5",
       "winner": "LGD",
-      "p_before": 0.114990234375,
-      "p_after": 0.08349609375,
-      "impact": -0.031494140625,
+      "p_before": 0.115234375,
+      "p_after": 0.09375,
+      "impact": -0.021484375,
       "playoff_round": 0
     },
     {
@@ -20,10 +20,21 @@
       "b": "WE",
       "score": "BO5",
       "winner": "WE",
-      "p_before": 0.087158203125,
-      "p_after": 0.08349609375,
-      "impact": -0.003662109375,
+      "p_before": 0.09765625,
+      "p_after": 0.09375,
+      "impact": -0.00390625,
       "playoff_round": 1
+    },
+    {
+      "date": "轮次4",
+      "a": "AL",
+      "b": "LGD",
+      "score": "BO5",
+      "winner": "AL",
+      "p_before": 0.08349609375,
+      "p_after": 0.09375,
+      "impact": 0.01025390625,
+      "playoff_round": 4
     },
     {
       "date": "轮次5",
@@ -31,9 +42,9 @@
       "b": "WE",
       "score": "BO5",
       "winner": "BLG",
-      "p_before": 0.081298828125,
-      "p_after": 0.08349609375,
-      "impact": 0.002197265625,
+      "p_before": 0.091796875,
+      "p_after": 0.09375,
+      "impact": 0.001953125,
       "playoff_round": 5
     }
   ],
@@ -42,9 +53,9 @@
     "a": "IG",
     "b": "TES",
     "group": "playoffs",
-    "p_if_ig_win": 0.1669921875,
+    "p_if_ig_win": 0.1875,
     "p_if_ig_lose": 0.0,
-    "delta_win": 0.08349609375,
-    "delta_lose": -0.08349609375
+    "delta_win": 0.09375,
+    "delta_lose": -0.09375
   }
 }
