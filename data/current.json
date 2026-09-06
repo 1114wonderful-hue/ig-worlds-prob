@@ -1,21 +1,21 @@
 {
-  "date": "2026-09-04",
+  "date": "2026-09-06",
   "stage": "playoffs",
-  "p_qualify": 0.09375,
-  "p_seed1": 0.03125,
+  "p_qualify": 0.171875,
+  "p_seed1": 0.0625,
   "p_seed2": 0.0,
-  "p_seed3": 0.015625,
-  "p_seed4": 0.046875,
+  "p_seed3": 0.03125,
+  "p_seed4": 0.078125,
   "breakdown": {
-    "seed1": 0.03125,
+    "seed1": 0.0625,
     "seed2": 0.0,
-    "qualifier_upper": 0.03125,
-    "qualifier_lower": 0.15625,
-    "out": 0.78125
+    "qualifier_upper": 0.0625,
+    "qualifier_lower": 0.25,
+    "out": 0.625
   },
   "ig_base_points": 0,
   "nirvana_cases": 0,
   "ascend_cases": 0,
-  "playoff_branches": 256,
+  "playoff_branches": 64,
   "remaining_games": 0
 }

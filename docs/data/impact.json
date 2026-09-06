@@ -1,7 +1,7 @@
 {
-  "as_of": "2026-09-04",
+  "as_of": "2026-09-06",
   "stage": "playoffs",
-  "p_now": 0.09375,
+  "p_now": 0.171875,
   "impacts": [
     {
       "date": "轮次0",
@@ -9,9 +9,9 @@
       "b": "LGD",
       "score": "BO5",
       "winner": "LGD",
-      "p_before": 0.115234375,
-      "p_after": 0.09375,
-      "impact": -0.021484375,
+      "p_before": 0.203125,
+      "p_after": 0.171875,
+      "impact": -0.03125,
       "playoff_round": 0
     },
     {
@@ -20,10 +20,32 @@
       "b": "WE",
       "score": "BO5",
       "winner": "WE",
-      "p_before": 0.09765625,
-      "p_after": 0.09375,
-      "impact": -0.00390625,
+      "p_before": 0.1875,
+      "p_after": 0.171875,
+      "impact": -0.015625,
       "playoff_round": 1
+    },
+    {
+      "date": "轮次2",
+      "a": "IG",
+      "b": "TES",
+      "score": "BO5",
+      "winner": "IG",
+      "p_before": 0.0859375,
+      "p_after": 0.171875,
+      "impact": 0.0859375,
+      "playoff_round": 2
+    },
+    {
+      "date": "轮次3",
+      "a": "NIP",
+      "b": "JDG",
+      "score": "BO5",
+      "winner": "NIP",
+      "p_before": 0.1875,
+      "p_after": 0.171875,
+      "impact": -0.015625,
+      "playoff_round": 3
     },
     {
       "date": "轮次4",
@@ -31,9 +53,9 @@
       "b": "LGD",
       "score": "BO5",
       "winner": "AL",
-      "p_before": 0.08349609375,
-      "p_after": 0.09375,
-      "impact": 0.01025390625,
+      "p_before": 0.16015625,
+      "p_after": 0.171875,
+      "impact": 0.01171875,
       "playoff_round": 4
     },
     {
@@ -42,20 +64,20 @@
       "b": "WE",
       "score": "BO5",
       "winner": "BLG",
-      "p_before": 0.091796875,
-      "p_after": 0.09375,
-      "impact": 0.001953125,
+      "p_before": 0.171875,
+      "p_after": 0.171875,
+      "impact": 0.0,
       "playoff_round": 5
     }
   ],
   "ig_next": {
     "date": "季后赛",
     "a": "IG",
-    "b": "TES",
+    "b": "LGD",
     "group": "playoffs",
-    "p_if_ig_win": 0.1875,
+    "p_if_ig_win": 0.34375,
     "p_if_ig_lose": 0.0,
-    "delta_win": 0.09375,
-    "delta_lose": -0.09375
+    "delta_win": 0.171875,
+    "delta_lose": -0.171875
   }
 }
