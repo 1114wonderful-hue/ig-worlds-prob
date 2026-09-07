@@ -1,5 +1,5 @@
 {
-  "date": "2026-09-06",
+  "date": "2026-09-07",
   "stage": "playoffs",
   "p_qualify": 0.171875,
   "p_seed1": 0.0625,
@@ -16,6 +16,6 @@
   "ig_base_points": 0,
   "nirvana_cases": 0,
   "ascend_cases": 0,
-  "playoff_branches": 64,
+  "playoff_branches": 32,
   "remaining_games": 0
 }

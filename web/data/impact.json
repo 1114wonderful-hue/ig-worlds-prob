@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-09-06",
+  "as_of": "2026-09-07",
   "stage": "playoffs",
   "p_now": 0.171875,
   "impacts": [
@@ -53,9 +53,9 @@
       "b": "LGD",
       "score": "BO5",
       "winner": "AL",
-      "p_before": 0.16015625,
+      "p_before": 0.1640625,
       "p_after": 0.171875,
-      "impact": 0.01171875,
+      "impact": 0.0078125,
       "playoff_round": 4
     },
     {
@@ -68,6 +68,17 @@
       "p_after": 0.171875,
       "impact": 0.0,
       "playoff_round": 5
+    },
+    {
+      "date": "轮次8",
+      "a": "AL",
+      "b": "BLG",
+      "score": "BO5",
+      "winner": "BLG",
+      "p_before": 0.171875,
+      "p_after": 0.171875,
+      "impact": 0.0,
+      "playoff_round": 8
     }
   ],
   "ig_next": {
